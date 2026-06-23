@@ -4,4 +4,27 @@
   background: /Textures/_SpyStation/LobbyScreens/gaslokalka.webp
   name: ГазЛокалка
   artist: SpyBlumps
- 
+
+- type: lobbyBackground 
+  id: rebel
+  background: /Textures/_SpyStation/LobbyScreens/rebel.webp
+  name: РебелИнк
+  artist: Baton
+
+- type: lobbyBackground 
+  id: musor
+  background: /Textures/_SpyStation/LobbyScreens/musor.webp
+  name: Послание
+  artist: MamaTvoya
+
+- type: lobbyBackground 
+  id: corvaxmoney
+  background: /Textures/_SpyStation/LobbyScreens/corvaxmoney.webp
+  name: КорваксМани
+  artist: TheIncredibleBaton
+
+- type: lobbyBackground 
+  id: valve
+  background: /Textures/_SpyStation/LobbyScreens/valve.webp
+  name: Валв
+  artist: SpyBlumps
