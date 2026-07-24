@@ -24,11 +24,9 @@
       - !type:SpawnEntity
         entity: SheetGlass1
         number: 15
-        shouldScale: false
       - !type:SpawnEntity
         entity: SheetRGlass1
         number: 5
-        shouldScale: false
     - reagents: [ Plasma ]
       methods: [ Touch, Injection ]
       effects:
@@ -44,7 +42,6 @@
       - !type:SpawnEntity
         entity: SheetPlasteel1
         number: 5
-        shouldScale: false
     - reagents: [ Blood ]
       methods: [ Touch, Injection ]
       effects:

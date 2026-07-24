@@ -19,7 +19,7 @@ public sealed class VoiceMaskBuiState : BoundUserInterfaceState
     public readonly string? Verb;
     public readonly bool Active;
     public readonly bool AccentHide;
-    public readonly string TTSVoice; // CorvaxGoob-TTS
+    public readonly string Voice; // CorvaxGoob-TTS
     public ProtoId<JobIconPrototype>? JobIcon { get; } // GabyStation -> Radio icons
 
     public VoiceMaskBuiState(string name, string? verb, bool active, bool accentHide,
@@ -29,7 +29,7 @@ public sealed class VoiceMaskBuiState : BoundUserInterfaceState
         Verb = verb;
         Active = active;
         AccentHide = accentHide;
-        TTSVoice = voice;  // CorvaxGoob-TTS
+        Voice = voice;  // CorvaxGoob-TTS
         JobIcon = jobIcon; // GabyStation -> Radio icons
     }
 }

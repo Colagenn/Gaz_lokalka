@@ -1,7 +1,5 @@
-ent-CablePhysBase = { "" }
+ent-CableBase = { "" }
     .desc = { "" }
-ent-CableBase = { ent-CablePhysBase }
-    .desc = { ent-CablePhysBase.desc }
 ent-CableHV = HV power cable
     .desc = An orange high voltage power cable.
 ent-CableHVUncuttable = { ent-CableHV }
@@ -17,5 +15,3 @@ ent-CableApcExtension = LV power cable
 ent-CableApcExtensionUncuttable = { ent-CableApcExtension }
     .suffix = uncuttable
     .desc = { ent-CableApcExtension.desc }
-ent-CableDet = explosive cord
-    .desc = Spaghetti for people who hate walls.

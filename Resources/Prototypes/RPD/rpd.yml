@@ -58,7 +58,6 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-  allowMultiDirection: true
 
 - type: rcd
   id: VolumetricPump
@@ -71,7 +70,6 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-  allowMultiDirection: true
 
 - type: rcd
   id: ManualValve
@@ -84,7 +82,6 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-  allowMultiDirection: true
 
 - type: rcd
   id: SignalValve
@@ -97,7 +94,6 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-  allowMultiDirection: true
 
 - type: rcd
   id: PressureValve
@@ -123,7 +119,6 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-  allowMultiDirection: true
 
 - type: rcd
   id: VentScrubber
@@ -136,7 +131,6 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-  allowMultiDirection: true
 
 - type: rcd
   id: VentGas
@@ -149,7 +143,6 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-  allowMultiDirection: true
 
 - type: rcd
   id: DualPortVent
@@ -162,7 +155,6 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-  allowMultiDirection: true
 
 - type: rcd
   id: VentPassive
@@ -175,7 +167,6 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-  allowMultiDirection: true
 
 - type: rcd
   id: Radiator
@@ -188,7 +179,6 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-  allowMultiDirection: true
 
 - type: rcd
   id: RadiatorBend
@@ -201,7 +191,6 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-  allowMultiDirection: true
 
 - type: rcd
   id: MixerGas

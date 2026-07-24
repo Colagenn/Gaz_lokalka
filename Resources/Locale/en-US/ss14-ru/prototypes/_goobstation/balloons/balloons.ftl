@@ -1,4 +1,4 @@
-ent-BaseBalloonTD = base balloon
+ent-BaseBalloon = base balloon
     .desc = { ent-BaseStructureDynamic.desc }
 ent-RedBalloon = red balloon
     .desc = The weakest balloon.

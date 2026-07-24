@@ -1,2 +1,5 @@
-ent-CosmicBorgChantry = vacuous chantry
-    .desc = Its surface churns with rampant malign light.
+ent-CosmicConstructPylon = Vacuous Chantry
+    .desc = Lorem Ipsum
+ent-CosmicConstructPylonSpawnIn = Vacuous Chantry
+    .suffix = Spawn, DO NOT MAP
+    .desc = { ent-BaseStructure.desc }

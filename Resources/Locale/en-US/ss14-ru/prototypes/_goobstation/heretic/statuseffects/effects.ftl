@@ -6,7 +6,3 @@ ent-StatusEffectStarTouched = star touched
     .desc = { ent-MobStatusEffectBase.desc }
 ent-CarvingAlertedStatusEffect = alerted
     .desc = { ent-MobStatusEffectBase.desc }
-ent-ShadowCloakStatusEffect = shadow cloak
-    .desc = { ent-MobStatusEffectBase.desc }
-ent-ShadowCloakRevealStatusEffect = shadow cloak revealed
-    .desc = { ent-StatusEffectSlowdown.desc }

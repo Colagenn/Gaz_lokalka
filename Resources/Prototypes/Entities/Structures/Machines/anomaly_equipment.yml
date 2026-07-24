@@ -268,7 +268,9 @@
   - type: MaterialStorage
     whitelist:
       tags:
-        - SheetPlasma
+        - Sheet
+    materialWhiteList:
+    - Plasma
   - type: OreSiloClient
   - type: Fixtures
     fixtures:

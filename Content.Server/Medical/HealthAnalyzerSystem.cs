@@ -282,12 +282,15 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         if (TryComp<TemperatureComponent>(target, out var temp))
             bodyTemperature = temp.CurrentTemperature;
 
-        var bloodAmount = _bloodstreamSystem.GetBloodLevel(target); // Goobstation
+        var bloodAmount = float.NaN;
         var unrevivable = false;
         var bloodLow = false; // Goobstation
 
-        if (TryComp<BloodstreamComponent>(target, out var bloodstream)) // Goobstation - Don't resolve twice
+        if (TryComp<BloodstreamComponent>(target, out var bloodstream) &&
+            _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName,
+                ref bloodstream.BloodSolution, out var bloodSolution))
         {
+            bloodAmount = bloodSolution.FillFraction;
             bloodLow = bloodAmount < bloodstream.BloodlossThreshold; // Goobstation
         }
 

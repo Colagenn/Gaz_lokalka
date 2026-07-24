@@ -58,9 +58,7 @@ public sealed class XenomorphLarvaSystem : EntitySystem
             Hidden = true,
             CancelDuplicate = true,
             BlockDuplicate = true,
-            DuplicateCondition = DuplicateConditions.SameEvent,
-            DistanceThreshold = null,
-            RequireCanInteract = false
+            DuplicateCondition = DuplicateConditions.SameEvent
         };
 
         if (!_doAfter.TryStartDoAfter(doAfterEventArgs))

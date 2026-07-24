@@ -32,7 +32,6 @@
       - !type:SpawnEntity
         entity: XenobioVolatileOrgan
         number: 1
-        shouldScale: false
     - reagents: [ Blood ]
       methods: [ Touch, Injection ]
       effects:

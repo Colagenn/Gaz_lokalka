@@ -131,7 +131,7 @@ namespace Content.Shared.Preferences
 
         // CorvaxGoob-TTS-Start
         [DataField]
-        public string TTSVoice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
+        public string Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
         // CorvaxGoob-TTS-End
 
         // CorvaxGoob-Revert : DB conflicts
@@ -189,7 +189,7 @@ namespace Content.Shared.Preferences
             string name,
             string flavortext,
             string species,
-            string ttsVoice, // CorvaxGoob-TTS
+            string voice, // CorvaxGoob-TTS
             int age,
             Sex sex,
             Gender gender,
@@ -205,7 +205,7 @@ namespace Content.Shared.Preferences
             Name = name;
             FlavorText = flavortext;
             Species = species;
-            TTSVoice = ttsVoice; // CorvaxGoob-TTS
+            Voice = voice; // CorvaxGoob-TTS
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -238,7 +238,7 @@ namespace Content.Shared.Preferences
             : this(other.Name,
                 other.FlavorText,
                 other.Species,
-                other.TTSVoice, // CorvaxGoob-TTS
+                other.Voice, // CorvaxGoob-TTS
                 other.Age,
                 other.Sex,
                 other.Gender,
@@ -349,7 +349,7 @@ namespace Content.Shared.Preferences
                 Age = age,
                 Gender = gender,
                 Species = species,
-                TTSVoice = voiceId, // CorvaxGoob-TTS
+                Voice = voiceId, // CorvaxGoob-TTS
                 Appearance = HumanoidCharacterAppearance.Random(species, sex),
                 // BarkVoice = barkvoiceId, // Goob Station - Barks // CorvaxGoob-Revert : DB conflicts
             };
@@ -388,7 +388,7 @@ namespace Content.Shared.Preferences
         // CorvaxGoob-TTS-Start
         public HumanoidCharacterProfile WithVoice(string voice)
         {
-            return new(this) { TTSVoice = voice };
+            return new(this) { Voice = voice };
         }
         // CorvaxGoob-TTS-End
 
@@ -567,7 +567,6 @@ namespace Content.Shared.Preferences
             if (Name != other.Name) return false;
             if (Age != other.Age) return false;
             if (Sex != other.Sex) return false;
-            if (TTSVoice != other.TTSVoice) return false; // CorvaxGoob-TTS
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             // if (Height != other.Height) return false; // Goobstation: port EE height/width sliders // CorvaxGoob-Clearing
@@ -743,9 +742,9 @@ namespace Content.Shared.Preferences
             _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
 
             // CorvaxGoob-TTS-Start
-            prototypeManager.TryIndex<TTSVoicePrototype>(TTSVoice, out var ttsVoice);
-            if (ttsVoice is null || !CanHaveVoice(ttsVoice, Sex))
-                TTSVoice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
+            prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
+            if (voice is null || !CanHaveVoice(voice, Sex))
+                Voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
             // CorvaxGoob-TTS-End
 
             // Checks prototypes exist for all loadouts and dump / set to default if not.
@@ -858,7 +857,6 @@ namespace Content.Shared.Preferences
             // hashCode.Add(Width); // Goobstation: port EE height/width sliders // CorvaxGoob-Clearing
             hashCode.Add(Age);
             hashCode.Add((int) Sex);
-            hashCode.Add(TTSVoice); // CorvaxGoob-TTS
             hashCode.Add((int) Gender);
             hashCode.Add(Appearance);
             // hashCode.Add(BarkVoice); // Goob Station - Barks // CorvaxGoob-Revert : DB conflicts

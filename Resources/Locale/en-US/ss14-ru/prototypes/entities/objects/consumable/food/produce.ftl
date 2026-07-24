@@ -1,7 +1,5 @@
 ent-ProduceBase = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
-ent-ProduceBaseRuminant = { ent-ProduceBase }
-    .desc = { ent-ProduceBase.desc }
 ent-FoodProduceBase = { ent-FoodInjectableBase }
     .desc = { ent-FoodInjectableBase.desc }
 ent-WheatBushel = wheat bushel

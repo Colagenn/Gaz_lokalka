@@ -1,10 +1,7 @@
 ent-ClothingNeckEnsembleCaptain = captain's ensemble
     .desc = You're a hardened veteran, and you rule this station with an iron fist. That chess match? Never happened.
     .suffix = DO NOT MAP
-ent-ClothingNeckEnsembleChiefEngineerWhite = chief engineer's white ensemble
-    .desc = In the event of a delamination, this won't protect you from the radiation. With how long you've been doing this, that wouldn't happen. Right?
-    .suffix = DO NOT MAP
-ent-ClothingNeckEnsembleChiefEngineerGreen = chief engineer's green ensemble
+ent-ClothingNeckEnsembleChiefEngineer = chief engineer's ensemble
     .desc = In the event of a delamination, this won't protect you from the radiation. With how long you've been doing this, that wouldn't happen. Right?
     .suffix = DO NOT MAP
 ent-ClothingNeckEnsembleChiefMedicalOfficer = chief medical officer's ensemble

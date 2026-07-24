@@ -221,9 +221,9 @@ namespace Content.Server.Database
                 gender = genderVal;
 
             // CorvaxGoob-TTS-Start
-            var ttsVoice = profile.TTSVoice;
-            if (string.IsNullOrEmpty(ttsVoice))
-                ttsVoice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
+            var voice = profile.Voice;
+            if (voice == String.Empty)
+                voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
             // CorvaxGoob-TTS-End
 
             // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
@@ -273,7 +273,7 @@ namespace Content.Server.Database
                 profile.CharacterName,
                 profile.FlavorText,
                 profile.Species,
-                ttsVoice, // CorvaxGoob-TTS
+                voice, // CorvaxGoob-TTS
                 profile.Age,
                 sex,
                 gender,
@@ -311,7 +311,7 @@ namespace Content.Server.Database
             profile.CharacterName = humanoid.Name;
             profile.FlavorText = humanoid.FlavorText;
             profile.Species = humanoid.Species;
-            profile.TTSVoice = humanoid.TTSVoice; // CorvaxGoob-TTS
+            profile.Voice = humanoid.Voice; // CorvaxGoob-TTS
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();

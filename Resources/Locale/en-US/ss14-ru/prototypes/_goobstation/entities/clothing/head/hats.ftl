@@ -1,7 +1,3 @@
-ent-ClothingHeadHatArmored = { ent-ClothingHeadBase }
-    .desc = { ent-ClothingHeadBase.desc }
-ent-ClothingHeadHatArmoredCC = { ent-ClothingHeadBase }
-    .desc = { ent-ClothingHeadBase.desc }
 ent-ClothingHeadHatBeretEliteNavyOfficer = elite navy officer's beret
     .desc = A navy blue beret with the silver shield of the Nanotrasen security forces.
 ent-ClothingHeadHatBeretNavyOfficer = navy officer's beret
@@ -44,7 +40,3 @@ ent-ClothingHeadHatTinfoilHat = tinfoil hat
     .desc = A high tech helmet crafted from aluminum foil.
 ent-ClothingHeadHatOuterCommandcap = outer command cap
     .desc = Purple gilded cap with Terra-Gov insignia.
-ent-ClothingHeadHatGoldCentcom = golden Centcom cap
-    .desc = A gold-and-white gilded cap worn by the highest-ranking members of Central Command.
-ent-ClothingHeadHatCowboyCentcom = centcom cowboy hat
-    .desc = A black and green cowboy hat with a gold band, worn by 'southerner' Central Command officers.

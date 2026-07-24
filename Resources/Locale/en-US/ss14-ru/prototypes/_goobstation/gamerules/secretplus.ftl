@@ -6,5 +6,3 @@ ent-SecretPlusLow = { ent-SecretPlusMid }
     .desc = { ent-SecretPlusMid.desc }
 ent-SecretPlusRampingMid = { ent-SecretPlusMid }
     .desc = { ent-SecretPlusMid.desc }
-ent-SecretPlusLowpop = { ent-SecretPlusMid }
-    .desc = { ent-SecretPlusMid.desc }

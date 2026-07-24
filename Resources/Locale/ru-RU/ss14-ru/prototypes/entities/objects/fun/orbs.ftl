@@ -1,6 +1,0 @@
-ent-SingularityToy = игрушечная сингулярность
-    .desc = Массово производится корпоративным конгломератом садистов!
-ent-TeslaToy = Тедди Теслы
-    .desc = Любимая игрушка великого инженера Николы Теслы.
-ent-PonderingOrb = шар размышлений
-    .desc = Ponderous, man... Really ponderous.

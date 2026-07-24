@@ -75,7 +75,6 @@
         type: WiresBoundUserInterface
   - type: ActivatableUI
     key: enum.AutodocUiKey.Key
-    blockSpectators: true # CorvaxGoob
   - type: ActivatableUIRequiresPower
   - type: Autodoc
   - type: Sanitized

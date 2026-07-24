@@ -1,7 +1,5 @@
 ent-DoorRemoteDefault = door remote
     .desc = A gadget which can open and bolt doors remotely.
-ent-DoorRemoteCanEletrifyDoors = { ent-DoorRemoteDefault }
-    .desc = { ent-DoorRemoteDefault.desc }
 ent-DoorRemoteCommand = command door remote
     .desc = { ent-DoorRemoteDefault.desc }
 ent-DoorRemoteCustom = custom door remote
@@ -22,6 +20,6 @@ ent-DoorRemoteEngineering = engineering door remote
     .desc = { ent-DoorRemoteDefault.desc }
 ent-DoorRemoteAll = super door remote
     .suffix = Admeme
-    .desc = { ent-DoorRemoteCanEletrifyDoors.desc }
+    .desc = { ent-DoorRemoteDefault.desc }
 ent-DoorRemoteXenoborg = xenoborg door remote
-    .desc = { ent-DoorRemoteCanEletrifyDoors.desc }
+    .desc = { ent-DoorRemoteDefault.desc }

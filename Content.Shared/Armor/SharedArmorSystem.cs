@@ -69,16 +69,7 @@ public abstract class SharedArmorSystem : EntitySystem
         if (TryComp<MaskComponent>(uid, out var mask) && mask.IsToggled)
             return;
 
-        // Goob-Fix-Start
-        if (args.Args.TargetPart == null)
-            return;
-
-        var (partType, _) = _body.ConvertTargetBodyPart(args.Args.TargetPart);
-
-        if (component.ArmorCoverage.Contains(partType))
-            args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage,
-            DamageSpecifier.PenetrateArmor(component.Modifiers, args.Args.Damage.ArmorPenetration));
-        // Goob-Fix-End
+        args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, component.Modifiers);
     }
 
     private void OnBorgDamageModify(EntityUid uid, ArmorComponent component,

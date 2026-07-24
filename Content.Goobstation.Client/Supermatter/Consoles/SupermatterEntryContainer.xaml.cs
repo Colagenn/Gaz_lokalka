@@ -148,12 +148,12 @@ public sealed partial class SupermatterEntryContainer : BoxContainer
 
     private float GetStoredGas(GasPrototype gas, SupermatterFocusData? focusData)
     {
-        if (focusData is null)
+        var id = int.Parse(gas.ID);
+
+        if (focusData == null)
             return 0;
 
-        Gas id = (Gas) Enum.Parse(typeof(Gas), gas.ID);
-
-        return focusData.Value.GasStorage[id];
+        return focusData.Value.GasStorage[(Gas)id];
     }
 
     private void UpdateEngineBar(ProgressBar bar, PanelContainer border, float value, float leftSize, float rightSize, Color leftColor, Color middleColor, Color rightColor)

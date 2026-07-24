@@ -1,3 +1,3 @@
 ent-MobSlasher = Urist McSlasher
-    .desc = Debug control to set variant.
+    .desc = A terrifying slasher with supernatural abilities.
     .suffix = Debug

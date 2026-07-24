@@ -37,7 +37,3 @@ ent-ClothingBeltHolsterFilledBlueshield = { ent-ClothingBeltHolster }
 ent-ClothingBeltMilitaryRigGrenadierFilled = { ent-ClothingBeltMilitaryRigGrenadier }
     .suffix = Комплект гренадёра, заполненный
     .desc = { ent-ClothingBeltMilitaryRigGrenadier.desc }
-
-ent-ClothingBeltMilitaryWebbingFilled = { ent-ClothingBeltMilitaryWebbing }
-    .suffix = Filled, BSO
-    .desc = { ent-ClothingBeltMilitaryWebbing.desc }

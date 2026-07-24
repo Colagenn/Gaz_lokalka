@@ -1,7 +1,5 @@
 ent-StationGoalPaper = station goal centcomm message
     .desc = It looks like you have a lot of work to do.
-ent-YellowPaper = yellow paper
-    .desc = A piece of yellow paper.
 ent-RedPaper = red paper
     .desc = A piece of red paper.
 ent-OrangePaper = orange paper
@@ -16,6 +14,8 @@ ent-VioletPaper = violet paper
     .desc = A piece of violet paper.
 ent-PinkPaper = pink paper
     .desc = A piece of pink paper.
+ent-YellowPaper = yellow paper
+    .desc = A piece of yellow paper.
 ent-GreyPaper = grey paper
     .desc = A piece of greytide paper.
 ent-BloodRedPaper = blood-red paper

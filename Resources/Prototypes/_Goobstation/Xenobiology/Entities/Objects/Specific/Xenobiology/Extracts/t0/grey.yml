@@ -38,7 +38,6 @@
       - !type:SpawnEntity
         entity: MobSlimeXenobioBabyGrey
         number: 3
-        shouldScale: false
     - reagents: [ Blood ]
       methods: [ Touch, Injection ]
       effects:
@@ -51,7 +50,6 @@
       - !type:SpawnEntity
         entity: MonkeyCube
         number: 3
-        shouldScale: false
   - type: Tag
     tags:
     - XenobiologyGreyExtract

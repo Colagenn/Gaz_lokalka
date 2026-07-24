@@ -1,5 +1,5 @@
-ent-PenExploding = { ent-Pen }
+ent-PenExploding = pen
+    .desc = A dark ink pen.
     .suffix = Exploding
-    .desc = { ent-Pen.desc }
 ent-PenExplodingBox = exploding pen box
     .desc = A small box containing an exploding pen. Packaging disintegrates when opened, leaving no evidence behind.

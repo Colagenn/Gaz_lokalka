@@ -46,7 +46,7 @@ namespace Content.IntegrationTests.Tests.Preferences
                 Name = "Charlie Charlieson",
                 FlavorText = "The biggest boy around.",
                 Species = "Human",
-                TTSVoice = "Eugene", // CorvaxGoob-TTS
+                Voice = "Eugene", // CorvaxGoob-TTS
                 Age = 21,
                 Appearance = new(
                     "Afro",

@@ -250,7 +250,6 @@
     radius: 4
     netsync: false
   - type: Pullable
-  - type: Grabbable # CorvaxGoob
   - type: Puller
     needsHands: false
   - type: StandingState

@@ -1,2 +1,2 @@
-ent-ClothingNeckOldClothWrap = старый тканевый бинт
+ent-ClothingNeckOldClothWrap = Старый тканевый бинт
     .desc = Изношенный тканевый бинт, поблекший с годами. Слегка пахнет сигарами.

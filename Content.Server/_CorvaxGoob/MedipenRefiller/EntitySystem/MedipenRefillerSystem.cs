@@ -34,7 +34,7 @@ public sealed class MedipenRefillerSystem : EntitySystem
         SubscribeLocalEvent<MedipenRefillerComponent, SolutionContainerChangedEvent>(SubscribeUpdateUiState);
         SubscribeLocalEvent<MedipenRefillerComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState);
 
-        SubscribeLocalEvent<MedipenRefillerComponent, EntInsertedIntoContainerMessage>(OnEntityInserted);
+        SubscribeLocalEvent<MedipenRefillerComponent, EntInsertedIntoContainerMessage>(OnEntityEnserted);
         SubscribeLocalEvent<MedipenRefillerComponent, BoundUIOpenedEvent>(OnUiOpen);
 
         SubscribeLocalEvent<MedipenRefillerComponent, MedipenRefillerApplySettingsMessage>(OnMedipenNewSettings);
@@ -50,10 +50,10 @@ public sealed class MedipenRefillerSystem : EntitySystem
 
         var medipenSlot = _itemSlots.GetItemOrNull(entity.Owner, MedipenSlotName);
 
-        if (medipenSlot is null)
+        if (!TryComp<MedipenComponent>(medipenSlot, out var medipenComponent))
             return;
 
-        if (!TryComp<MedipenComponent>(medipenSlot.Value, out var medipenComponent))
+        if (medipenSlot is null)
             return;
 
         if (entity.Comp.CurrentColor != args.Color || medipenComponent.Color != args.Color)
@@ -91,29 +91,17 @@ public sealed class MedipenRefillerSystem : EntitySystem
         if (medipenSolution.MaxVolume.Int() <= 0)
             return;
 
-        if (medipenSolution.Volume >= medipenSolution.MaxVolume)
+        if (medipenSolution.Volume == medipenSolution.MaxVolume)
             return;
 
         if (!_solutionContainer.TryGetFitsInDispenser(inputContainer.Value, out var inputContainerComp, out var inputSolution))
             return;
 
-        if (inputSolution.Volume <= 0)
-            return;
-
         entity.Comp.CurrentVolume = Math.Clamp(args.Volume, 1, medipenSolution.MaxVolume.Int());
 
-        var maxInject = medipenSolution.MaxVolume.Int() - medipenSolution.Volume.Int();
-        if (maxInject <= 0)
-            return;
+        var injectVolume = Math.Clamp(entity.Comp.CurrentVolume, 1, medipenSolution.MaxVolume.Int() - medipenSolution.Volume.Int());
 
-        var injectVolume = Math.Clamp(entity.Comp.CurrentVolume, 1, maxInject);
-
-        var split = inputSolution.SplitSolution(injectVolume);
-        if (!_solutionContainer.TryAddSolution(medipenSolutionComp.Value, split))
-        {
-            _solutionContainer.TryAddSolution(inputContainerComp.Value, split);
-            return;
-        }
+        _solutionContainer.TryAddSolution(medipenSolutionComp.Value, inputSolution.SplitSolution(injectVolume));
 
         _audio.PlayPvs(entity.Comp.FillMedipenSound, entity);
         UpdateUiState(entity, true);
@@ -124,7 +112,7 @@ public sealed class MedipenRefillerSystem : EntitySystem
         UpdateUiState(entity);
     }
 
-    public void OnEntityInserted(Entity<MedipenRefillerComponent> entity, ref EntInsertedIntoContainerMessage args)
+    public void OnEntityEnserted(Entity<MedipenRefillerComponent> entity, ref EntInsertedIntoContainerMessage args)
     {
         if (HasComp<MedipenComponent>(args.Entity) && _entityManage.TryGetComponent<MetaDataComponent>(args.Entity, out var meta) && meta.EntityPrototype is not null)
             entity.Comp.PreviewPrototype = meta.EntityPrototype.ID;

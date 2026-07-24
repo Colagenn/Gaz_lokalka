@@ -1,6 +1,6 @@
-ent-BoxDonkSoftBase = toy ammunition box
+ent-BoxDonkSoftBase = foamdart box
     .desc = { ent-BaseItem.desc }
-ent-BoxDonkSoftBox = foam dart box
-    .desc = A cardboard box of foam darts.
+ent-BoxDonkSoftBox = box of foam darts
+    .desc = { ent-BoxDonkSoftBase.desc }
 ent-BoxCartridgeCap = cap gun cartridge box
-    .desc = A cardboard box of cap gun cartridges.
+    .desc = { ent-BaseMagazineBoxMagnum.desc }

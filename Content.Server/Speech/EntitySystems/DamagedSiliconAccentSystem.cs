@@ -37,10 +37,18 @@ public sealed class DamagedSiliconAccentSystem : EntitySystem
             }
             else
             {
-                // Goobstation - Start
-                if (_powerCell.TryGetBatteryFromSlotOrEntity(uid, out var battery))
-                    currentChargeLevel = _battery.GetChargeLevel(battery.Value.AsNullable());
-                // Goobstation - End
+                Entity<BatteryComponent?>? batteryEnt;
+                BatteryComponent? batteryComp = null;
+
+                if (_powerCell.TryGetBatteryFromSlot(uid, out var battery))
+                    //|| TryComp(uid, out batteryComp)) // Goobstation - Energycrit: Make this work with BatteryComponent too todo fix ee shit
+                {
+                    batteryEnt = battery != null
+                        ? (battery.Value.Owner, battery.Value.Comp)
+                        : (uid, batteryComp);
+
+                    currentChargeLevel = _battery.GetChargeLevel(batteryEnt.Value);
+                }
             }
             currentChargeLevel = Math.Clamp(currentChargeLevel, 0.0f, 1.0f);
             // Corrupt due to low power (drops characters on longer messages)

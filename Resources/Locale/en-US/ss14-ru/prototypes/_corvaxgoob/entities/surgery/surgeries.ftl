@@ -1,4 +1,5 @@
+# CorvaxGoob Pacification
 ent-SurgeryPacify = Pacify patient
-    .desc = { ent-SurgeryBase.desc }
+    .desc = Surgical procedure that makes the patient unable to harm others.
 ent-SurgeryRemovePacification = Remove pacification
-    .desc = { ent-SurgeryBase.desc }
+    .desc = Surgical procedure that removes pacification from the patient.

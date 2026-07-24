@@ -34,7 +34,7 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
             if (!TryComp<SubdermalImplantComponent>(implant, out var sic))
                 continue;
 
-            var implantEnt = new Entity<SubdermalImplantComponent>(implant, sic);
+            var implantEnt = new Entity<SubdermalImplantComponent>(ent, sic);
 
             ForceImplant(args.NewEntity, implantEnt!);
         }

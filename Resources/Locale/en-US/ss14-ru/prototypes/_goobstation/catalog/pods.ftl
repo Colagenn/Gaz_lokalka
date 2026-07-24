@@ -18,5 +18,3 @@ ent-SpawnArmamentsDraconic = dragon suit
     .desc = { ent-SpawnSupplyEmpty.desc }
 ent-SpawnArmamentsInquisitor = inquisitor armour
     .desc = { ent-SpawnSupplyEmpty.desc }
-ent-SpawnSchemaMonk = monastic vestments
-    .desc = { ent-SpawnSupplyEmpty.desc }

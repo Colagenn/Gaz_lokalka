@@ -31,18 +31,14 @@ public sealed partial class ZombifySelfActionEvent : InstantActionEvent { };
 /// <summary>
 ///  Goobstation
 ///  Event raised when unzombifying or something.
+///  Temporarily making this because i cannot be bothered doing proper fixes.
 ///  Does nothing on client server handles unzombifying after an entity effect.
 /// </summary>
 [ByRefEvent]
-public readonly struct EntityUnZombifiedEvent
+public readonly struct EntityUnZombifiedEvent(EntityUid target)
 {
     /// <summary>
-    ///     Whether this person should be inoculated from catching the infection again.
+    ///     The entity that was unzombified.
     /// </summary>
-    public readonly bool Inoculate;
-
-    public EntityUnZombifiedEvent(bool inoculate)
-    {
-        Inoculate = inoculate;
-    }
+    public readonly EntityUid Target = target;
 };

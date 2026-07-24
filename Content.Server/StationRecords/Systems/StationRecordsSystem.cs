@@ -161,7 +161,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             JobTitle = jobPrototype.LocalizedName,
             JobIcon = jobPrototype.Icon,
             JobPrototype = jobId,
-            Species = species, // CorvaxGoob-Locale
+            Species = _prototypeManager.Index<SpeciesPrototype>(species).Name, // CorvaxGoob-Locale
             Sex = sex, // CorvaxGoob-Locale
             DisplayPriority = jobPrototype.RealDisplayWeight,
             Fingerprint = mobFingerprint,
