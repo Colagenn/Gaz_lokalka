@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseSecurityContraband, ClothingOuterHardsuitBase ]
+  parent: [ BaseSecurityContraband, ClothingOuterBaseLarge, AllowSuitStorageClothing ]
   id: ClothingOuterHardsuitSecPilot
   name: suit pilot security services
   suffix: Empty
@@ -42,6 +42,7 @@
     interfaces:
       enum.SharedGasTankUiKey.Key:
         type: GasTankBoundUserInterface
+  - type: InputMover
   - type: CanMoveInAir
   - type: MovementSpeedModifier
     weightlessAcceleration: 1

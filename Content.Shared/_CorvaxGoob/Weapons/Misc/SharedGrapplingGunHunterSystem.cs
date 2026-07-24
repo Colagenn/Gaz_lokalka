@@ -96,6 +96,7 @@ public abstract class SharedGrapplingGunHunterSystem : EntitySystem
             component.Projectile = shotUid.Value;
             component.HookedTarget = null;
             component.Reeling = false;
+            Dirty(uid, component);
 
             hook.Gun = uid;
             hook.Shooter = args.User;
@@ -105,15 +106,15 @@ public abstract class SharedGrapplingGunHunterSystem : EntitySystem
             var visuals = EnsureComp<JointVisualsComponent>(shotUid.Value);
             visuals.Sprite = component.RopeSprite;
             visuals.OffsetA = new Vector2(0f, 0.5f);
-            visuals.Target = uid;
+            visuals.Target = GetNetEntity(uid);
             Dirty(shotUid.Value, visuals);
         }
 
         component.Stream = _audio.Stop(component.Stream);
-
-        TryComp<AppearanceComponent>(uid, out var appearance);
-        _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, false, appearance);
-
+        if (TryComp<AppearanceComponent>(uid, out var appearance))
+            _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, false, appearance);
+        else
+            _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, false);
         Dirty(uid, component);
     }
 
@@ -532,6 +533,9 @@ public abstract class SharedGrapplingGunHunterSystem : EntitySystem
         if (restoreAmmo && hadProjectile)
         {
             _gun.ChangeBasicEntityAmmoCount(uid, 1);
+
+            var updateAmmoEvent = new UpdateClientAmmoEvent();
+            RaiseLocalEvent(uid, ref updateAmmoEvent);
         }
     }
 

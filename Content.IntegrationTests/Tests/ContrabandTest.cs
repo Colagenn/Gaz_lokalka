@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Ignaz "Ian" Kraft <ignaz.k@live.de>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Contraband;
@@ -29,11 +32,8 @@ public sealed class ContrabandTest
                     if (!proto.TryGetComponent<ContrabandComponent>(out var contraband, componentFactory))
                         continue;
 
-                    if (!protoMan.TryIndex(contraband.Severity, out var severity))
-                    {
-                        Assert.Fail($"{proto.ID} has a ContrabandComponent with a unknown severity.");
-                        continue;
-                    }
+                    Assert.That(protoMan.TryIndex(contraband.Severity, out var severity, false),
+                        @$"{proto.ID} has a ContrabandComponent with a unknown severity.");
 
                     if (!severity.ShowDepartmentsAndJobs)
                         continue;

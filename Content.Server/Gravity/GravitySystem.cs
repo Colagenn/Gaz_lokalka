@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2022 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 20kdc <asdd2808@gmail.com>
+// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Gravity;
@@ -20,7 +26,7 @@ namespace Content.Server.Gravity
         /// </summary>
         public void RefreshGravity(EntityUid uid, GravityComponent? gravity = null)
         {
-            if (!GravityQuery.Resolve(uid, ref gravity))
+            if (!Resolve(uid, ref gravity))
                 return;
 
             if (gravity.Inherent)
@@ -63,7 +69,7 @@ namespace Content.Server.Gravity
         /// </summary>
         public void EnableGravity(EntityUid uid, GravityComponent? gravity = null)
         {
-            if (!GravityQuery.Resolve(uid, ref gravity))
+            if (!Resolve(uid, ref gravity))
                 return;
 
             if (gravity.Enabled || gravity.Inherent)

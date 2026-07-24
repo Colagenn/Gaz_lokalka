@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Tap <tapiocaphobe@gmail.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Ghagliiarghii <68826635+Ghagliiarghii@users.noreply.github.com>
+#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -11,16 +16,18 @@
     sprite: Clothing/Multiple/towel.rsi
   - type: Clothing
     sprite: Clothing/Multiple/towel.rsi
-    slots:
+    slots: 
     - BELT
     - INNERCLOTHING
     - HEAD
     femaleMask: UniformTop
-    equipSound:
-    unequipSound:
+    equipSound: 
+    unequipSound: 
   - type: Spillable
     solution: absorbed
     spillWhenThrown: false
+  - type: DrainableSolution
+    solution: absorbed
   - type: Absorbent
     pickupAmount: 15
   - type: SolutionContainerManager
@@ -163,7 +170,7 @@
         color: "#0089EF"
   - type: Fiber
     fiberColor: fibers-blue
-
+    
 - type: entity
   id: TowelColorDarkBlue
   name: dark blue towel
@@ -389,26 +396,26 @@
   - type: Sprite
     layers:
     - state: icon
-      color: "#639137"
+      color: "#79CC26"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#639137"
+        color: "#79CC26"
       right:
       - state: inhand-right
-        color: "#639137"
+        color: "#79CC26"
   - type: Clothing
     clothingVisuals:
       head:
       - state: equipped-HELMET
-        color: "#639137"
+        color: "#79CC26"
       jumpsuit:
       - state: equipped-INNERCLOTHING
-        color: "#639137"
+        color: "#79CC26"
       belt:
       - state: equipped-BELT
-        color: "#639137"
+        color: "#79CC26"
   - type: Fiber
     fiberColor: fibers-green
 
@@ -766,3 +773,4 @@
         color: "#535353"
   - type: Fiber
     fiberColor: fibers-black
+    

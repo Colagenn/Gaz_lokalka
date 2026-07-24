@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 sneb
+#
 # SPDX-License-Identifier: MPL-2.0
 
 - type: species
@@ -27,8 +29,6 @@
     Chest: MobHydrakinTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
-    UndergarmentBottom: MobHumanoidAnyMarking
-    UndergarmentTop: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
     # Eyes: MobHydrakinEyes
     LArm: MobHydrakinLArm

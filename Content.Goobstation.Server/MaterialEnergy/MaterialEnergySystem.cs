@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
+// SPDX-FileCopyrightText: 2024 yglop <95057024+yglop@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
+// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Power.EntitySystems;
@@ -56,15 +62,23 @@ namespace Content.Goobstation.Server.MaterialEnergy
                 return;
 
             var totalMaterial = materialPerSheet * sheetsInStack;
+            var materialLeft = totalMaterial - chargeDiff;
+            var chargeToAdd = 0;
 
-            var chargeToAddFloat = MathF.Min(chargeDiff, totalMaterial);
-            var chargeToAdd = (int) MathF.Floor(chargeToAddFloat);
+            if (materialLeft == 0)
+            {
+                chargeToAdd = totalMaterial;
+            }
+            else if (materialLeft > 0)
+            {
+                chargeToAdd = (totalMaterial - materialLeft);
+            }
+            else
+            {
+                chargeToAdd = Math.Abs(Math.Abs(materialLeft) - chargeDiff);
+            }
 
-            if (chargeToAdd <= 0)
-                return;
-
-            if (_batterySystem.TryGetBatteryComponent(cutter, out var batteryComponent, out _))
-                _batterySystem.SetCharge(cutter, batteryComponent.LastCharge + chargeToAdd);
+            _batterySystem.AddCharge(cutter, chargeToAdd);
 
             var toDel = _stack.Split(
                 (EntityUid) _material,

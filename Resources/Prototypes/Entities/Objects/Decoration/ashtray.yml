@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 Guilherme Ornel <86210200+joshepvodka@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Ghagliiarghii <68826635+Ghagliiarghii@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+#
 # SPDX-License-Identifier: MIT
 
 - type: entity
@@ -51,7 +55,6 @@
       - Burnt
       - Cigarette
       - Cigar
-      - Matchstick
     hideStackVisualsWhenClosed: false
     maxItemSize: Tiny
     grid:
@@ -61,7 +64,7 @@
       storagebase: !type:Container
   - type: ItemCounter
     count:
-      tags: [ Cigarette, Cigar, Burnt, Matchstick ]
+      tags: [ Cigarette, Cigar, Burnt ]
     composite: true
     layerStates:
     - ashtray1

@@ -1,3 +1,10 @@
+// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Kevin Zheng <kevinz5000@gmail.com>
+// SPDX-FileCopyrightText: 2023 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 c4llv07e <38111072+c4llv07e@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 metalgearsloth <comedian_vs_clown@hotmail.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+//
 // SPDX-License-Identifier: MIT
 
 using Content.Shared.Access.Systems;
@@ -14,12 +21,6 @@ namespace Content.Shared.Access.Components;
 public sealed partial class AccessOverriderComponent : Component
 {
     public static string PrivilegedIdCardSlotId = "AccessOverrider-privilegedId";
-
-    /// <summary>
-    /// If the Access Overrider UI will show info about the privileged ID
-    /// </summary>
-    [DataField]
-    public bool ShowPrivilegedId = true;
 
     [DataField]
     public ItemSlot PrivilegedIdSlot = new();
@@ -56,7 +57,6 @@ public sealed partial class AccessOverriderComponent : Component
         public readonly string PrivilegedIdName;
         public readonly bool IsPrivilegedIdPresent;
         public readonly bool IsPrivilegedIdAuthorized;
-        public readonly bool ShowPrivilegedIdGrid;
         public readonly ProtoId<AccessLevelPrototype>[]? TargetAccessReaderIdAccessList;
         public readonly ProtoId<AccessLevelPrototype>[]? AllowedModifyAccessList;
         public readonly ProtoId<AccessLevelPrototype>[]? MissingPrivilegesList;
@@ -68,8 +68,7 @@ public sealed partial class AccessOverriderComponent : Component
             ProtoId<AccessLevelPrototype>[]? missingPrivilegesList,
             string privilegedIdName,
             string targetLabel,
-            Color targetLabelColor,
-            bool showPrivilegedIdGrid)
+            Color targetLabelColor)
         {
             IsPrivilegedIdPresent = isPrivilegedIdPresent;
             IsPrivilegedIdAuthorized = isPrivilegedIdAuthorized;
@@ -79,7 +78,6 @@ public sealed partial class AccessOverriderComponent : Component
             PrivilegedIdName = privilegedIdName;
             TargetLabel = targetLabel;
             TargetLabelColor = targetLabelColor;
-            ShowPrivilegedIdGrid = showPrivilegedIdGrid;
         }
     }
 

@@ -28,13 +28,14 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger #CorvaxGoob-ShuttleGuns-Rebalance
+    autoRecharge: true
     autoRechargeRate: 1
   - type: SpaceArtillery
     powerChargeRate: 5 #CorvaxGoob-ShuttleGuns-Rebalance
     powerUsePassive: 2000
     powerUseActive: 0
   - type: Actions
-  - type: BatteryAmmoProvider
+  - type: ProjectileBatteryAmmoProvider
     proto: ShipRubiconProjectile
     fireCost: 400
   - type: Destructible
@@ -92,13 +93,14 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger #CorvaxGoob-ShuttleGuns-Rebalance
+    autoRecharge: true
     autoRechargeRate: 0
   - type: SpaceArtillery
     powerChargeRate: 80 #CorvaxGoob-ShuttleGuns-Rebalance
     powerUsePassive: 125 #CorvaxGoob-ShuttleGuns-Rebalance
     powerUseActive: 0
   - type: Actions
-  - type: BatteryAmmoProvider
+  - type: ProjectileBatteryAmmoProvider
     proto: ShipMediumPlasmaProjectile
     fireCost: 1000
   - type: Destructible
@@ -162,13 +164,14 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger #CorvaxGoob-ShuttleGuns-Rebalance
+    autoRecharge: true
     autoRechargeRate: 100
   - type: SpaceArtillery
     powerChargeRate: 100 #CorvaxGoob-ShuttleGuns-Rebalance
     powerUsePassive: 20000
     powerUseActive: 0
   - type: Actions
-  - type: BatteryAmmoProvider
+  - type: ProjectileBatteryAmmoProvider
     proto: ShipDymereProjectile
     fireCost: 20000
   - type: RadarBlip

@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Shuttles.Components;
@@ -17,9 +23,10 @@ public sealed partial class ShuttleSystem
     {
         SubscribeLocalEvent<IFFConsoleComponent, AnchorStateChangedEvent>(OnIFFConsoleAnchor);
         SubscribeLocalEvent<IFFConsoleComponent, IFFShowIFFMessage>(OnIFFShow);
-        SubscribeLocalEvent<IFFConsoleComponent, MapInitEvent>(OnInitIFFConsole);
+        SubscribeLocalEvent<IFFConsoleComponent, IFFShowVesselMessage>(OnIFFShowVessel);
 
         SubscribeLocalEvent<IFFConsoleComponent, IFFApplyRadarSettingsMessage>(OnIFFApplyRadarSettings); // CorvaxGoob-IIF-Improves
+
         SubscribeLocalEvent<IFFConsoleComponent, GotEmaggedEvent>(OnGotEmagged); // CorvaxGoob-IIF-Improves
 
         SubscribeLocalEvent<GridSplitEvent>(OnGridSplit);
@@ -113,7 +120,8 @@ public sealed partial class ShuttleSystem
 
     private void OnIFFShow(EntityUid uid, IFFConsoleComponent component, IFFShowIFFMessage args)
     {
-        if (!TryComp(uid, out TransformComponent? xform) || xform.GridUid == null)
+        if (!TryComp(uid, out TransformComponent? xform) || xform.GridUid == null ||
+            (component.AllowedFlags & IFFFlags.HideLabel) == 0x0)
         {
             return;
         }
@@ -126,18 +134,18 @@ public sealed partial class ShuttleSystem
 
         if (!args.Show)
         {
-            AddAllSupportedIFFFlags(xform, component);
+            AddIFFFlag(xform.GridUid.Value, IFFFlags.HideLabel);
         }
         else
         {
             RemoveIFFFlag(xform.GridUid.Value, IFFFlags.HideLabel);
-            RemoveIFFFlag(xform.GridUid.Value, IFFFlags.Hide);
         }
     }
 
-    private void OnInitIFFConsole(EntityUid uid, IFFConsoleComponent component, MapInitEvent args)
+    private void OnIFFShowVessel(EntityUid uid, IFFConsoleComponent component, IFFShowVesselMessage args)
     {
-        if (!TryComp(uid, out TransformComponent? xform) || xform.GridUid == null)
+        if (!TryComp(uid, out TransformComponent? xform) || xform.GridUid == null ||
+            (component.AllowedFlags & IFFFlags.Hide) == 0x0)
         {
             return;
         }
@@ -148,9 +156,13 @@ public sealed partial class ShuttleSystem
             return;
         }
 
-        if (component.HideOnInit)
+        if (!args.Show)
         {
-            AddAllSupportedIFFFlags(xform, component);
+            AddIFFFlag(xform.GridUid.Value, IFFFlags.Hide);
+        }
+        else
+        {
+            RemoveIFFFlag(xform.GridUid.Value, IFFFlags.Hide);
         }
     }
 
@@ -200,27 +212,6 @@ public sealed partial class ShuttleSystem
                 Name = MetaData(gridUid).EntityName, // CorvaxGoob-IIF-Improves
                 Color = component.Color // CorvaxGoob-IIF-Improves
             });
-        }
-    }
-
-    // Made this method to avoid copy and pasting.
-    /// <summary>
-    /// Adds all IFF flags that are allowed by AllowedFlags to the grid.
-    /// </summary>
-    private void AddAllSupportedIFFFlags(TransformComponent xform, IFFConsoleComponent component)
-    {
-        if (xform.GridUid == null)
-        {
-            return;
-        }
-
-        if ((component.AllowedFlags & IFFFlags.HideLabel) != 0x0)
-        {
-            AddIFFFlag(xform.GridUid.Value, IFFFlags.HideLabel);
-        }
-        if ((component.AllowedFlags & IFFFlags.Hide) != 0x0)
-        {
-            AddIFFFlag(xform.GridUid.Value, IFFFlags.Hide);
         }
     }
 }

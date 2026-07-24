@@ -1,5 +1,11 @@
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
+// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -9,6 +15,6 @@ namespace Content.Shared._Goobstation.Wizard.Mutate;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BasicHitscanAmmoProviderComponent : AmmoProviderComponent
 {
-    [DataField(required: true), AutoNetworkedField]
-    public EntProtoId Proto;
+    [ViewVariables(VVAccess.ReadWrite), DataField(required: true), AutoNetworkedField]
+    public ProtoId<HitscanPrototype> Proto;
 }

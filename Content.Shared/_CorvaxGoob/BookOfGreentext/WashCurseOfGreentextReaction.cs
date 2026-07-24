@@ -3,19 +3,15 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._CorvaxGoob.BookOfGreentext;
 
-public sealed partial class WashCurseOfGreentextReactionSystem
-    : EntityEffectSystem<CurseOfBookOfGreentextComponent, WashCurseOfGreentextReaction>
+public sealed partial class WashCurseOfGreentextReaction : EntityEffect
 {
-    protected override void Effect(Entity<CurseOfBookOfGreentextComponent> entity,
-        ref EntityEffectEvent<WashCurseOfGreentextReaction> args)
-    {
-        RemComp<CurseOfBookOfGreentextComponent>(entity);
-    }
-}
-
-public sealed partial class WashCurseOfGreentextReaction
-    : EntityEffectBase<WashCurseOfGreentextReaction>
-{
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("reagent-effect-guidebook-wash-curse-of-greentext-reaction", ("chance", Probability));
+
+    public override void Effect(EntityEffectBaseArgs args)
+    {
+        if (!args.EntityManager.TryGetComponent<CurseOfBookOfGreentextComponent>(args.TargetEntity, out var curse)) return;
+
+        args.EntityManager.RemoveComponent(args.TargetEntity, curse);
+    }
 }

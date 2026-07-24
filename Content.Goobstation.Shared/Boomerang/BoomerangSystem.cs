@@ -1,3 +1,15 @@
+// SPDX-FileCopyrightText: 2025 ActiveMammmoth <140334666+ActiveMammmoth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ActiveMammmoth <kmcsmooth@gmail.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 Ilya246 <ilyukarno@gmail.com>
+// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
+// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
+// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
+// SPDX-FileCopyrightText: 2025 TheBorzoiMustConsume <197824988+TheBorzoiMustConsume@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
+// SPDX-FileCopyrightText: 2025 keronshb <54602815+keronshb@users.noreply.github.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Hands.EntitySystems;
@@ -17,7 +29,7 @@ public sealed class BoomerangSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<BoomerangComponent, LandEvent>(OnLanded);
-        SubscribeLocalEvent<BoomerangComponent, ThrowEvent>(OnThrown);
+        SubscribeLocalEvent<BoomerangComponent, ThrownEvent>(OnThrown);
     }
 
     public override void Update(float frameTime)
@@ -33,7 +45,7 @@ public sealed class BoomerangSystem : EntitySystem
         _toThrow.Clear();
     }
 
-    private void OnThrown(Entity<BoomerangComponent> ent, ref ThrowEvent args)
+    private void OnThrown(Entity<BoomerangComponent> ent, ref ThrownEvent args)
     {
         if (ent.Comp.Thrower == null)
             SetThrower(ent, args.User);

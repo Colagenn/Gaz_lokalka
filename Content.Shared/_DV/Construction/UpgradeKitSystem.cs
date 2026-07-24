@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.DoAfter;
@@ -80,7 +83,7 @@ public sealed class UpgradeKitSystem : EntitySystem
     public bool CanUpgrade(Entity<UpgradeKitComponent> ent, EntityUid target, EntityUid user)
     {
         if (_whitelist.IsWhitelistFail(ent.Comp.Whitelist, target) ||
-            _whitelist.IsWhitelistFail(ent.Comp.Blacklist, target))
+            _whitelist.IsBlacklistPass(ent.Comp.Blacklist, target))
         {
             _popup.PopupClient(Loc.GetString("upgrade-kit-invalid-target"), target, user);
             return false;

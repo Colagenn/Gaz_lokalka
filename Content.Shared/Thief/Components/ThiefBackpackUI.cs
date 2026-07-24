@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2023 Colin-Tel <113523727+Colin-Tel@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Ed <96445749+TheShuEd@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Flareguy <78941145+Flareguy@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+//
 // SPDX-License-Identifier: MIT
 
 using Robust.Shared.Serialization;
@@ -10,17 +15,11 @@ public sealed class ThiefBackpackBoundUserInterfaceState : BoundUserInterfaceSta
 {
     public readonly Dictionary<int, ThiefBackpackSetInfo> Sets;
     public int MaxSelectedSets;
-    // Name UI field set by ThiefUndeterminedBackpackComponent
-    public LocId ToolName;
-    // Description UI field set by ThiefUndeterminedBackpackComponent
-    public LocId ToolDesc;
 
-    public ThiefBackpackBoundUserInterfaceState(Dictionary<int, ThiefBackpackSetInfo> sets, int max, LocId toolName, LocId toolDesc)
+    public ThiefBackpackBoundUserInterfaceState(Dictionary<int, ThiefBackpackSetInfo> sets, int max)
     {
         Sets = sets;
         MaxSelectedSets = max;
-        ToolName = toolName;
-        ToolDesc = toolDesc;
     }
 }
 

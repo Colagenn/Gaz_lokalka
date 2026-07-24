@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2024 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
+// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Server.ChronoLegionnaire.Components;
@@ -15,7 +21,7 @@ public sealed partial class StasisGunSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<StasisGunComponent, DroppedEvent>(OnWeaponDrop);
-        SubscribeLocalEvent<StasisGunComponent, ThrowEvent>(OnWeaponThrown);
+        SubscribeLocalEvent<StasisGunComponent, ThrownEvent>(OnWeaponThrown);
     }
 
     /// <summary>
@@ -35,7 +41,7 @@ public sealed partial class StasisGunSystem : EntitySystem
     /// <summary>
     /// Return weapon on belt when it thrown
     /// </summary>
-    private void OnWeaponThrown(Entity<StasisGunComponent> gun, ref ThrowEvent args)
+    private void OnWeaponThrown(Entity<StasisGunComponent> gun, ref ThrownEvent args)
     {
         if (!HasComp<Shared.ChronoLegionnaire.Components.StasisImmunityComponent>(args.User))
             return;

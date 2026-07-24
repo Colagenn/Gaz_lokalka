@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Common.DoAfter;
@@ -16,7 +19,7 @@ public sealed partial class CombatDoAfterSystem
     private void InitializeTriggers()
     {
         SubscribeLocalEvent<CombatDoAfterComponent, MeleeHitEvent>(OnHit);
-        SubscribeLocalEvent<CombatDoAfterComponent, ThrowEvent>(OnThrow);
+        SubscribeLocalEvent<CombatDoAfterComponent, ThrownEvent>(OnThrow);
 
         SubscribeLocalEvent<InjectorComponent, CombatSyringeTriggerEvent>(OnCombatSyringeHit);
         SubscribeLocalEvent<EnsnaringComponent, CombatDoAfterThrownEvent>(OnEnsnaringThrow);
@@ -74,7 +77,7 @@ public sealed partial class CombatDoAfterSystem
         QueueDel(ent);
     }
 
-    private void OnThrow(Entity<CombatDoAfterComponent> ent, ref ThrowEvent args)
+    private void OnThrow(Entity<CombatDoAfterComponent> ent, ref ThrownEvent args)
     {
         if (args.User == null)
             return;

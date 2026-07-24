@@ -1,5 +1,5 @@
 - type: entity
-  parent: DrinkCartonSmallBaseFull
+  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
   id: DrinkJuiceAppleCarton
   name: apple juice
   description: A pure set of vitamins that is useful for corporate employees.

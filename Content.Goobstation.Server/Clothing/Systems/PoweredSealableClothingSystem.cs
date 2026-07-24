@@ -1,8 +1,17 @@
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+// SPDX-FileCopyrightText: 2025 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
+// SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
+// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
+// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Clothing.Components;
 using Content.Goobstation.Shared.Clothing.Systems;
 using Content.Server.Power.EntitySystems;
+using Content.Server.PowerCell;
 using Content.Shared.Alert;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Systems;
@@ -26,12 +35,12 @@ public sealed partial class PoweredSealableClothingSystem : SharedPoweredSealabl
         SubscribeLocalEvent<SealableClothingRequiresPowerComponent, PowerCellChangedEvent>(OnPowerCellChanged);
         SubscribeLocalEvent<SealableClothingRequiresPowerComponent, PowerCellSlotEmptyEvent>(OnPowerCellEmpty);
         SubscribeLocalEvent<SealableClothingRequiresPowerComponent, ClothingControlSealCompleteEvent>(OnRequiresPowerSealCompleteEvent);
-        //SubscribeLocalEvent<SealableClothingRequiresPowerComponent, InventoryRelayedEvent<FindBatteryEvent>>(OnFindBatteryEvent);
+        SubscribeLocalEvent<SealableClothingRequiresPowerComponent, InventoryRelayedEvent<FindBatteryEvent>>(OnFindBatteryEvent);
     }
 
     private void OnPowerCellChanged(Entity<SealableClothingRequiresPowerComponent> entity, ref PowerCellChangedEvent args)
     {
-        if (!entity.Comp.IsPowered && _powerCellSystem.HasDrawCharge(entity.Owner))
+        if (!entity.Comp.IsPowered && _powerCellSystem.HasDrawCharge(entity))
         {
             entity.Comp.IsPowered = true;
             Dirty(entity);
@@ -95,21 +104,19 @@ public sealed partial class PoweredSealableClothingSystem : SharedPoweredSealabl
         if (!TryComp<SealableClothingControlComponent>(uid, out var controlComp) || controlComp.WearerEntity == null)
             return;
 
-        if (!_powerCellSystem.TryGetBatteryFromSlot(entity.Owner, out var battery) || !controlComp.IsCurrentlySealed)
+        if (!_powerCellSystem.TryGetBatteryFromSlot(entity, out var battery) || !controlComp.IsCurrentlySealed)
         {
             _alertsSystem.ClearAlert(controlComp.WearerEntity.Value, comp.SuitPowerAlert);
             return;
         }
 
-        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, battery.Value.Comp.LastCharge), battery.Value.Comp.MaxCharge, 6);
+        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, battery.CurrentCharge), battery.MaxCharge, 6);
         _alertsSystem.ShowAlert(controlComp.WearerEntity.Value, comp.SuitPowerAlert, (short) severity);
     }
 
     /// <summary>
     /// Tries to find battery for charger
     /// </summary>
-    //
-    /* todo marty
     private void OnFindBatteryEvent(Entity<SealableClothingRequiresPowerComponent> entity, ref InventoryRelayedEvent<FindBatteryEvent> args)
     {
         if (args.Args.FoundBattery != null)
@@ -117,5 +124,5 @@ public sealed partial class PoweredSealableClothingSystem : SharedPoweredSealabl
 
         if (_powerCellSystem.TryGetBatteryFromSlot(entity, out var battery, out var batteryComp))
             args.Args.FoundBattery = (battery.Value, batteryComp);
-    }*/
+    }
 }

@@ -1,6 +1,12 @@
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 Ilya246 <ilyukarno@gmail.com>
+// SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Fax;
+using Content.Goobstation.Shared.Lube;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Fax;
 using Content.Shared.Administration.Logs;
@@ -9,7 +15,6 @@ using Content.Shared.DeviceNetwork;
 using Content.Shared.Fax.Components;
 using Content.Shared.Lube;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
 using Robust.Shared.Random;
 
 namespace Content.Goobstation.Server.Fax;
@@ -26,7 +31,7 @@ public sealed class FaxSlipSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<FaxSlipComponent, GettingFaxedSentEvent>(OnGettingFaxedSent);
-        SubscribeLocalEvent<FaxSlipComponent, ContainerGettingInsertedAttemptEvent>(OnLubedInsertAttempt);
+        SubscribeLocalEvent<FaxSlipComponent, CanLubedInsertEvent>(OnCanLubedInsert);
     }
 
     private void OnGettingFaxedSent(Entity<FaxSlipComponent> ent, ref GettingFaxedSentEvent args)
@@ -78,12 +83,8 @@ public sealed class FaxSlipSystem : EntitySystem
         }
     }
 
-    private void OnLubedInsertAttempt(Entity<FaxSlipComponent> ent, ref ContainerGettingInsertedAttemptEvent args)
+    private void OnCanLubedInsert(Entity<FaxSlipComponent> ent, ref CanLubedInsertEvent args)
     {
-        if (!HasComp<LubedComponent>(ent))
-            return;
-
-        if (ent.Comp.LubedChance != null && HasComp<FaxMachineComponent>(args.Container.Owner))
-            args.Cancel(); // too slippery to fax...
+        args.CanInsert |= ent.Comp.LubedChance != null && HasComp<FaxMachineComponent>(args.Into.Owner);
     }
 }

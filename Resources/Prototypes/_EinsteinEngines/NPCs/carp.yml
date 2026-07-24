@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+# SPDX-FileCopyrightText: 2025 shityaml <unalterableness@gmail.com>
+#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -104,7 +107,7 @@
     - type: NpcFactionMember
       factions:
         - Mouse
-    - type: Edible
+    - type: Food
     - type: BadFood
     - type: FlavorProfile
       flavors:

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -7,6 +10,9 @@
   description: sever yer parts a week from now
   suffix: DEBUG
   components:
+  - type: Tag
+    tags:
+      - Debug
   - type: Sprite
     sprite: Objects/Weapons/Melee/debug.rsi
     state: icon
@@ -24,6 +30,9 @@
   parent: MeleeDebugSever
   id: MeleeDebugSever100
   components:
+  - type: Tag
+    tags:
+      - Debug
   - type: MeleeWeapon
     damage:
       types:
@@ -34,6 +43,9 @@
   parent: MeleeDebugSever
   id: MeleeDebugSever200
   components:
+  - type: Tag
+    tags:
+      - Debug
   - type: MeleeWeapon
     damage:
       types:
@@ -46,6 +58,9 @@
   description: burn yer parts
   suffix: DEBUG
   components:
+  - type: Tag
+    tags:
+      - Debug
   - type: Sprite
     sprite: Objects/Weapons/Melee/debug.rsi
     state: icon
@@ -63,6 +78,9 @@
   parent: MeleeDebugBurner
   id: MeleeDebugBurner200
   components:
+  - type: Tag
+    tags:
+      - Debug
   - type: MeleeWeapon
     damage:
       types:

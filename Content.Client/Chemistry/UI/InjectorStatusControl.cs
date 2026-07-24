@@ -1,38 +1,42 @@
+// SPDX-FileCopyrightText: 2022 Alex Evgrashin <aevgrashin@yandex.ru>
+// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Plykiya <plykiya@protonmail.com>
+// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 August Eymann <august.eymann@gmail.com>
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Client.Message;
 using Content.Client.Stylesheets;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Chemistry.Prototypes;
 using Content.Goobstation.Maths.FixedPoint;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Chemistry.UI;
 
 public sealed class InjectorStatusControl : Control
 {
-    private readonly IPrototypeManager _prototypeManager;
-
     private readonly Entity<InjectorComponent> _parent;
     private readonly SharedSolutionContainerSystem _solutionContainers;
     private readonly RichTextLabel _label;
 
-    private FixedPoint2 _prevVolume;
-    private FixedPoint2 _prevMaxVolume;
-    private FixedPoint2? _prevTransferAmount;
-    private InjectorBehavior _prevBehavior;
+    private FixedPoint2 PrevVolume;
+    private FixedPoint2 PrevMaxVolume;
+    private FixedPoint2 PrevTransferAmount;
+    private InjectorToggleMode PrevToggleState;
 
-    public InjectorStatusControl(Entity<InjectorComponent> parent, SharedSolutionContainerSystem solutionContainers, IPrototypeManager prototypeManager)
+    public InjectorStatusControl(Entity<InjectorComponent> parent, SharedSolutionContainerSystem solutionContainers)
     {
-        _prototypeManager  = prototypeManager;
-
         _parent = parent;
         _solutionContainers = solutionContainers;
-        _label = new RichTextLabel { StyleClasses = { StyleClass.ItemStatus } };
+        _label = new RichTextLabel { StyleClasses = { StyleNano.StyleClassItemStatus } };
         AddChild(_label);
     }
 
@@ -40,38 +44,33 @@ public sealed class InjectorStatusControl : Control
     {
         base.FrameUpdate(args);
 
-        if (!_solutionContainers.TryGetSolution(_parent.Owner, _parent.Comp.SolutionName, out _, out var solution)
-            || !_prototypeManager.Resolve(_parent.Comp.ActiveModeProtoId, out var activeMode))
+        if (!_solutionContainers.TryGetSolution(_parent.Owner, _parent.Comp.SolutionName, out _, out var solution))
             return;
 
         // only updates the UI if any of the details are different than they previously were
-        if (_prevVolume == solution.Volume
-            && _prevMaxVolume == solution.MaxVolume
-            && _prevTransferAmount == _parent.Comp.CurrentTransferAmount
-            && _prevBehavior == activeMode.Behavior)
+        if (PrevVolume == solution.Volume
+            && PrevMaxVolume == solution.MaxVolume
+            && PrevTransferAmount == _parent.Comp.TransferAmount
+            && PrevToggleState == _parent.Comp.ToggleState)
             return;
 
-        _prevVolume = solution.Volume;
-        _prevMaxVolume = solution.MaxVolume;
-        _prevTransferAmount = _parent.Comp.CurrentTransferAmount;
-        _prevBehavior = activeMode.Behavior;
+        PrevVolume = solution.Volume;
+        PrevMaxVolume = solution.MaxVolume;
+        PrevTransferAmount = _parent.Comp.TransferAmount;
+        PrevToggleState = _parent.Comp.ToggleState;
 
         // Update current volume and injector state
-        // Seeing transfer volume is only important for injectors that can change it.
-        if (activeMode.TransferAmounts.Count > 1 && _parent.Comp.CurrentTransferAmount.HasValue)
+        var modeStringLocalized = Loc.GetString(_parent.Comp.ToggleState switch
         {
-            _label.SetMarkup(Loc.GetString("injector-volume-transfer-label",
-                ("currentVolume", solution.Volume),
-                ("totalVolume", solution.MaxVolume),
-                ("modeString", Loc.GetString(activeMode.Name)),
-                ("transferVolume", _parent.Comp.CurrentTransferAmount.Value)));
-        }
-        else
-        {
-            _label.SetMarkup(Loc.GetString("injector-volume-label",
-                ("currentVolume", solution.Volume),
-                ("totalVolume", solution.MaxVolume),
-                ("modeString", Loc.GetString(activeMode.Name))));
-        }
+            InjectorToggleMode.Draw => "injector-draw-text",
+            InjectorToggleMode.Inject => "injector-inject-text",
+            _ => "injector-invalid-injector-toggle-mode"
+        });
+
+        _label.SetMarkup(Loc.GetString("injector-volume-label",
+            ("currentVolume", solution.Volume),
+            ("totalVolume", solution.MaxVolume),
+            ("modeString", modeStringLocalized),
+            ("transferVolume", _parent.Comp.TransferAmount)));
     }
 }

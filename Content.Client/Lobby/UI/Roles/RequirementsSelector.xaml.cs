@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
@@ -33,9 +38,9 @@ public sealed partial class RequirementsSelector : BoxContainer
         RobustXamlLoader.Load(this);
         _options = new RadioOptions<int>(RadioOptionsLayout.Horizontal)
         {
-            FirstButtonStyle = StyleClass.ButtonOpenRight,
-            ButtonStyle = StyleClass.ButtonOpenBoth,
-            LastButtonStyle = StyleClass.ButtonOpenLeft,
+            FirstButtonStyle = StyleBase.ButtonOpenRight,
+            ButtonStyle = StyleBase.ButtonOpenBoth,
+            LastButtonStyle = StyleBase.ButtonOpenLeft,
             HorizontalExpand = true,
         };
         //Override default radio option button width
@@ -52,7 +57,7 @@ public sealed partial class RequirementsSelector : BoxContainer
             Text = Loc.GetString("role-timer-locked"),
             Visible = true,
             HorizontalAlignment = HAlignment.Center,
-            StyleClasses = {StyleClass.LabelSubText},
+            StyleClasses = {StyleBase.StyleClassLabelSubText},
         };
 
         _lockStripe = new StripeBack()

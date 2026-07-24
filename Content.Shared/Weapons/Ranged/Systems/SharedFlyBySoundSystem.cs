@@ -1,3 +1,13 @@
+// SPDX-FileCopyrightText: 2022 ElectroJr <leonsfriedrich@gmail.com>
+// SPDX-FileCopyrightText: 2022 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2022 T-Stalker <43253663+DogZeroX@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2022 T-Stalker <le0nel_1van@hotmail.com>
+// SPDX-FileCopyrightText: 2022 metalgearsloth <metalgearsloth@gmail.com>
+// SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
+// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Physics;
@@ -21,24 +31,24 @@ public abstract class SharedFlyBySoundSystem : EntitySystem
         SubscribeLocalEvent<FlyBySoundComponent, ComponentShutdown>(OnShutdown);
     }
 
-    private void OnStartup(Entity<FlyBySoundComponent> ent, ref ComponentStartup args)
+    private void OnStartup(EntityUid uid, FlyBySoundComponent component, ComponentStartup args)
     {
-        if (!TryComp<PhysicsComponent>(ent, out var body))
+        if (!TryComp<PhysicsComponent>(uid, out var body))
             return;
 
-        var shape = new PhysShapeCircle(ent.Comp.Range);
+        var shape = new PhysShapeCircle(component.Range);
 
-        _fixtures.TryCreateFixture(ent, shape, FlyByFixture, collisionLayer: (int)CollisionGroup.MobMask, hard: false, body: body);
+        _fixtures.TryCreateFixture(uid, shape, FlyByFixture, collisionLayer: (int) CollisionGroup.MobMask, hard: false, body: body);
     }
 
-    private void OnShutdown(Entity<FlyBySoundComponent> ent, ref ComponentShutdown args)
+    private void OnShutdown(EntityUid uid, FlyBySoundComponent component, ComponentShutdown args)
     {
-        if (!TryComp<PhysicsComponent>(ent, out var body) ||
-            MetaData(ent).EntityLifeStage >= EntityLifeStage.Terminating)
+        if (!TryComp<PhysicsComponent>(uid, out var body) ||
+            MetaData(uid).EntityLifeStage >= EntityLifeStage.Terminating)
         {
             return;
         }
 
-        _fixtures.DestroyFixture(ent, FlyByFixture, body: body);
+        _fixtures.DestroyFixture(uid, FlyByFixture, body: body);
     }
 }

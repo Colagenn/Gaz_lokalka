@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
+# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
+#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: reagent
@@ -11,29 +15,29 @@
       effects:
       - !type:Emote
         conditions:
-        - !type:MetabolizerTypeCondition # Goobstation - Yowie
-          type: [ Yowie ]
-          inverted: true
+        - !type:OrganType # Goobstation - Yowie
+          type: Yowie
+          shouldHave: false
         - !type:HasComponentCondition
           components:
-          - type: Wizard
-          - type: Apprentice
+            - Wizard
+            - Apprentice
           guidebookComponentName: reagent-comp-condition-wizard-or-apprentice
-          inverted: true
+          invert: true
         emote: Cough
         showInChat: true
         probability: 0.2
       - !type:DropItemsEntityEffect
         conditions:
-        - !type:MetabolizerTypeCondition # Goobstation - Yowie
-          type: [ Yowie ]
-          inverted: true
+        - !type:OrganType # Goobstation - Yowie
+          type: Yowie
+          shouldHave: false
         - !type:HasComponentCondition
           components:
-          - type: Wizard
-          - type: Apprentice
+            - Wizard
+            - Apprentice
           guidebookComponentName: reagent-comp-condition-wizard-or-apprentice
-          inverted: true
+          invert: true
         probability: 0.2
 
 - type: reagent
@@ -59,8 +63,8 @@
         conditions:
         - !type:HasComponentCondition
           components:
-          - type: Wizard
-          - type: Apprentice
+            - Wizard
+            - Apprentice
           guidebookComponentName: reagent-comp-condition-wizard-or-apprentice
       - !type:HealthChange
         damage:
@@ -73,24 +77,24 @@
         conditions:
         - !type:HasComponentCondition
           components:
-          - type: Wizard
-          - type: Apprentice
+            - Wizard
+            - Apprentice
           guidebookComponentName: reagent-comp-condition-wizard-or-apprentice
-      - !type:ModifyBleed
+      - !type:ModifyBleedAmount
         amount: -1.5
         conditions:
         - !type:HasComponentCondition
           components:
-          - type: Wizard
-          - type: Apprentice
+            - Wizard
+            - Apprentice
           guidebookComponentName: reagent-comp-condition-wizard-or-apprentice
-      - !type:CleanBloodstream
+      - !type:ChemCleanBloodstream
         cleanseRate: 6
         conditions:
         - !type:HasComponentCondition
           components:
-          - type: Wizard
-          - type: Apprentice
+            - Wizard
+            - Apprentice
           guidebookComponentName: reagent-comp-condition-wizard-or-apprentice
       - !type:GenericStatusEffect
         key: SeeingRainbows
@@ -99,6 +103,6 @@
         conditions:
         - !type:HasComponentCondition
           components:
-          - type: Wizard
-          - type: Apprentice
+            - Wizard
+            - Apprentice
           guidebookComponentName: reagent-comp-condition-wizard-or-apprentice

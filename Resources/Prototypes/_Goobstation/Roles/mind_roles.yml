@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
+# SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
+#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -39,7 +43,7 @@
 - type: entity
   parent: BaseMindRoleAntag
   id: MindRoleGhoul
-  name: Ghoul Role
+  name: Ghoul
   components:
   - type: MindRole
     antagPrototype: Ghoul
@@ -93,21 +97,6 @@
     exclusiveAntag: true
     roleType: SoloAntagonist
     subtype: role-subtype-contractor
-
-# Gemini
-
-- type: entity
-  parent: MindRoleGhostRoleFamiliar
-  id: MindRoleGemini
-  name: Gemini Role
-  components:
-  - type: MindRole
-    antag: true # This is bad
-    antagPrototype: TempGeminiGhostRoleAntag # todo marty clean this up and fix other mindroles too
-    exclusiveAntag: true  # This is bad
-    roleType: Familiar
-    subtype: role-subtype-gemini
-  - type: GeminiRole
 
 # Other shit but idc this codebase is dying.
 
@@ -200,4 +189,3 @@
     antagPrototype: ClownGhostAntagonistGoob
     roleType: SoloAntagonist
     sortWeight: 50
-

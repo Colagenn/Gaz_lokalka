@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -14,23 +17,8 @@ using Robust.Shared.Utility;
 
 namespace Content.Goobstation.UIKit.UserInterface.Controls;
 
-public struct CustomRichTextEntry
+internal struct CustomRichTextEntry
 {
-    public static readonly Type[] DefaultTags =
-    [
-        typeof(BoldItalicTag),
-        typeof(BoldTag),
-        typeof(BulletTag),
-        typeof(ColorTag),
-        typeof(HeadingTag),
-        typeof(ItalicTag),
-        typeof(ButtonTag),
-        typeof(IconTag),
-        typeof(EntityTextureTag),
-        typeof(RadioIconTag),
-        typeof(TextureTag),
-    ];
-
     private readonly Color _defaultColor;
     private readonly Type[]? _tagsAllowed;
 
@@ -62,17 +50,9 @@ public struct CustomRichTextEntry
     public CustomRichTextEntry(
             FormattedMessage message,
             Control parent,
-            MarkupTagManager tagMan,
-            IEntityManager entMan,
-            Color? defaultColor = null)
-        : this(message, parent, tagMan, entMan, DefaultTags, defaultColor) {}
-
-    public CustomRichTextEntry(
-            FormattedMessage message,
-            Control parent,
             MarkupTagManager tagManager,
             IEntityManager entManager,
-            Type[]? tagsAllowed,
+            Type[]? tagsAllowed = null,
             Color? defaultColor = null)
     {
         Message = message;
@@ -295,7 +275,7 @@ public struct CustomRichTextEntry
         DrawBoxContent(tagManager, handle, defaultFont, drawBox, verticalOffset, scrollBarPixelSize, context, uiScale, lineHeightScale);
     }
 
-    private readonly UIBox2 DrawBoxContent(
+    private UIBox2 DrawBoxContent(
         MarkupTagManager tagManager,
         DrawingHandleBase handle,
         Font defaultFont,
@@ -426,14 +406,7 @@ public struct CustomRichTextEntry
             return tag.TextBefore(node);
         }
 
-        try
-        {
-            tag.PopDrawContext(node, context);
-        }
-        catch
-        {
-            throw new Exception($"Bad closing tag for {node.Name}");
-        }
+        tag.PopDrawContext(node, context);
         return tag.TextAfter(node);
     }
 

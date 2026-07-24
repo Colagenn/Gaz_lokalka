@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+#
 # SPDX-License-Identifier: MIT
 
 - type: entity
@@ -6,10 +9,9 @@
   name: thruster crate
   description: Contains a thruster flatpack.
   components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        id: ThrusterFlatpack
+  - type: StorageFill
+    contents:
+      - id: ThrusterFlatpack
 
 - type: entity
   parent: CrateEngineering
@@ -17,7 +19,6 @@
   name: gyroscope crate
   description: Contains a gyroscope flatpack.
   components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        id: GyroscopeFlatpack
+  - type: StorageFill
+    contents:
+      - id: GyroscopeFlatpack

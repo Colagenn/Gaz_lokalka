@@ -1,3 +1,14 @@
+// SPDX-FileCopyrightText: 2023 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Crotalus <crotalus@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Kevin Zheng <kevinz5000@gmail.com>
+// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Partmedia <kevinz5000@gmail.com>
+// SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 pathetic meowmeow <uhhadd@gmail.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Client.Stylesheets;
@@ -55,8 +66,8 @@ public sealed partial class PowerMonitoringWindow
             // Selection action
             windowEntry.Button.OnButtonUp += args =>
             {
-                windowEntry.SourcesContainer.RemoveAllChildren();
-                windowEntry.LoadsContainer.RemoveAllChildren();
+                windowEntry.SourcesContainer.DisposeAllChildren();
+                windowEntry.LoadsContainer.DisposeAllChildren();
                 ButtonAction(windowEntry, masterContainer);
             };
         }
@@ -87,10 +98,10 @@ public sealed partial class PowerMonitoringWindow
 
         // Update button style
         if (netEntity == _focusEntity)
-            button.AddStyleClass(StyleClass.Positive);
+            button.AddStyleClass(StyleNano.StyleClassButtonColorGreen);
 
         else
-            button.RemoveStyleClass(StyleClass.Positive);
+            button.RemoveStyleClass(StyleNano.StyleClassButtonColorGreen);
 
         // Update sprite
         if (entry.MetaData.Value.SpritePath != string.Empty && entry.MetaData.Value.SpriteState != string.Empty)
@@ -187,7 +198,7 @@ public sealed partial class PowerMonitoringWindow
         // Toggle off button?
         if (entry.NetEntity == _focusEntity)
         {
-            entry.Button.RemoveStyleClass(StyleClass.Positive);
+            entry.Button.RemoveStyleClass(StyleNano.StyleClassButtonColorGreen);
             _focusEntity = null;
 
             // Request an update from the power monitoring system
@@ -197,7 +208,7 @@ public sealed partial class PowerMonitoringWindow
         }
 
         // Otherwise, toggle on
-        entry.Button.AddStyleClass(StyleClass.Positive);
+        entry.Button.AddStyleClass(StyleNano.StyleClassButtonColorGreen);
 
         ActivateAutoScrollToFocus();
 
@@ -208,7 +219,7 @@ public sealed partial class PowerMonitoringWindow
             {
                 if (sibling.NetEntity == _focusEntity)
                 {
-                    sibling.Button.RemoveStyleClass(StyleClass.Positive);
+                    sibling.Button.RemoveStyleClass(StyleNano.StyleClassButtonColorGreen);
                     break;
                 }
             }

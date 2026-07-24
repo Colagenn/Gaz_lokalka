@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 DoutorWhite <thedoctorwhite@gmail.com>
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
+// SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
@@ -32,7 +38,6 @@ public sealed class AfterLightTargetOverlay : Overlay
             return;
 
         var lightOverlay = _overlay.GetOverlay<BeforeLightTargetOverlay>();
-        var lightRes = lightOverlay.GetCachedForViewport(args.Viewport);
         var bounds = args.WorldBounds;
 
         // at 1-1 render scale it's mostly fine but at 4x4 it's way too fkn big
@@ -41,7 +46,7 @@ public sealed class AfterLightTargetOverlay : Overlay
 
         var localMatrix =
             viewport.LightRenderTarget.GetWorldToLocalMatrix(viewport.Eye, newScale);
-        var diff = (lightRes.EnlargedLightTarget.Size - viewport.LightRenderTarget.Size);
+        var diff = (lightOverlay.EnlargedLightTarget.Size - viewport.LightRenderTarget.Size);
         var halfDiff = diff / 2;
 
         // Pixels -> Metres -> Half distance.
@@ -56,7 +61,7 @@ public sealed class AfterLightTargetOverlay : Overlay
                     viewport.LightRenderTarget.Size.Y + halfDiff.Y);
 
                 worldHandle.SetTransform(localMatrix);
-                worldHandle.DrawTextureRectRegion(lightRes.EnlargedLightTarget.Texture, bounds, subRegion: subRegion);
+                worldHandle.DrawTextureRectRegion(lightOverlay.EnlargedLightTarget.Texture, bounds, subRegion: subRegion);
             }, Color.Transparent);
     }
 }

@@ -1,1 +1,0 @@
-decal-placer-window-copy = Copy Decal

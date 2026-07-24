@@ -1,2 +1,0 @@
-ghost-role-information-syndicate-gorilla-reinforcement-name = Syndicate Gorilla
-ghost-role-information-syndicate-gorilla-reinforcement-description = Someone needs reinforcements. You, a trained gorilla, will help them.

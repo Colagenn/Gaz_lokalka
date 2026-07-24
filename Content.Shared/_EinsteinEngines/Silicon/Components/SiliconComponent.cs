@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Robust.Shared.GameStates;
@@ -92,10 +95,10 @@ public sealed partial class SiliconComponent : Component
     public float? ChargeThresholdCritical = 0.1f;
 
     [DataField]
-    public ProtoId<AlertPrototype> BatteryAlert = "SiliconBattery";
+    public ProtoId<AlertPrototype> BatteryAlert = "BorgBattery";
 
     [DataField]
-    public ProtoId<AlertPrototype> NoBatteryAlert = "SiliconBatteryNone";
+    public ProtoId<AlertPrototype> NoBatteryAlert = "BorgBatteryNone";
 
 
     /// <summary>

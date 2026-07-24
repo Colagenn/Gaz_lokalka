@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 Ilya246 <ilyukarno@gmail.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Singularity.Events;
@@ -18,6 +21,6 @@ public sealed class EventHorizonIgnoreSystem : EntitySystem
 
     private void OnAttemptConsume(Entity<EventHorizonIgnoreComponent> ent, ref EventHorizonAttemptConsumeEntityEvent args)
     {
-        args.Cancelled = args.Cancelled || _whitelist.IsWhitelistPassOrNull(ent.Comp.HorizonWhitelist, args.EventHorizonUid);
+        args.Cancelled = args.Cancelled || _whitelist.IsBlacklistPassOrNull(ent.Comp.HorizonWhitelist, args.EventHorizonUid);
     }
 }

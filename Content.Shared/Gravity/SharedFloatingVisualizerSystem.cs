@@ -1,3 +1,18 @@
+// SPDX-FileCopyrightText: 2023 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Adeinitas <147965189+adeinitas@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Danger Revolution! <142105406+DangerRevolution@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
+// SPDX-FileCopyrightText: 2024 Timemaster99 <57200767+Timemaster99@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
+// SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
+// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
@@ -11,15 +26,16 @@ namespace Content.Shared.Gravity;
 /// </summary>
 public abstract class SharedFloatingVisualizerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private readonly SharedGravitySystem GravitySystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<FloatingVisualsComponent, ComponentStartup>(OnComponentStartup);
-        SubscribeLocalEvent<FloatingVisualsComponent, WeightlessnessChangedEvent>(OnWeightlessnessChanged);
-        SubscribeLocalEvent<FloatingVisualsComponent, FlightEvent>(OnFlight); // Goobstation
+        SubscribeLocalEvent<GravityChangedEvent>(OnGravityChanged);
+        SubscribeLocalEvent<FloatingVisualsComponent, EntParentChangedMessage>(OnEntParentChanged);
+        SubscribeLocalEvent<FloatingVisualsComponent, FlightEvent>(OnFlight);
     }
 
     /// <summary>
@@ -27,32 +43,44 @@ public abstract class SharedFloatingVisualizerSystem : EntitySystem
     /// </summary>
     public virtual void FloatAnimation(EntityUid uid, Vector2 offset, string animationKey, float animationTime, bool stop = false) { }
 
-    protected bool CanFloat(Entity<FloatingVisualsComponent> entity)
+    protected bool CanFloat(EntityUid uid, FloatingVisualsComponent component, TransformComponent? transform = null)
     {
-        entity.Comp.CanFloat = _gravity.IsWeightless(entity.Owner);
-        Dirty(entity);
-        return entity.Comp.CanFloat;
+        if (!Resolve(uid, ref transform))
+            return false;
+
+        if (transform.MapID == MapId.Nullspace)
+            return false;
+
+        component.CanFloat = GravitySystem.IsWeightless(uid, xform: transform);
+        Dirty(uid, component);
+        return component.CanFloat;
     }
 
-    private void OnComponentStartup(Entity<FloatingVisualsComponent> entity, ref ComponentStartup args)
+    private void OnComponentStartup(EntityUid uid, FloatingVisualsComponent component, ComponentStartup args)
     {
-        if (CanFloat(entity))
-            FloatAnimation(entity, entity.Comp.Offset, entity.Comp.AnimationKey, entity.Comp.AnimationTime);
+        if (CanFloat(uid, component))
+            FloatAnimation(uid, component.Offset, component.AnimationKey, component.AnimationTime);
     }
 
-    private void OnWeightlessnessChanged(Entity<FloatingVisualsComponent> entity, ref WeightlessnessChangedEvent args)
+    private void OnGravityChanged(ref GravityChangedEvent args)
     {
-        if (entity.Comp.CanFloat == args.Weightless)
-            return;
+        var query = EntityQueryEnumerator<FloatingVisualsComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var floating, out var transform))
+        {
+            if (transform.MapID == MapId.Nullspace)
+                continue;
 
-        entity.Comp.CanFloat = CanFloat(entity);
-        Dirty(entity);
+            if (transform.GridUid != args.ChangedGridIndex)
+                continue;
 
-        if (args.Weightless)
-            FloatAnimation(entity, entity.Comp.Offset, entity.Comp.AnimationKey, entity.Comp.AnimationTime);
+            floating.CanFloat = !args.HasGravity;
+            Dirty(uid, floating);
+
+            if (!args.HasGravity)
+                FloatAnimation(uid, floating.Offset, floating.AnimationKey, floating.AnimationTime);
+        }
     }
 
-    // Goobstation Start
     private void OnFlight(EntityUid uid, FloatingVisualsComponent component, FlightEvent args)
     {
         component.CanFloat = args.IsFlying;
@@ -63,5 +91,11 @@ public abstract class SharedFloatingVisualizerSystem : EntitySystem
 
         FloatAnimation(uid, component.Offset, component.AnimationKey, component.AnimationTime);
     }
-    // Goobstation End
+
+    private void OnEntParentChanged(EntityUid uid, FloatingVisualsComponent component, ref EntParentChangedMessage args)
+    {
+        var transform = args.Transform;
+        if (CanFloat(uid, component, transform))
+            FloatAnimation(uid, component.Offset, component.AnimationKey, component.AnimationTime);
+    }
 }

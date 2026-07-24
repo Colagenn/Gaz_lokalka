@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2023 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+//
 // SPDX-License-Identifier: MIT
 
 using Content.Client.Pinpointer.UI;
@@ -64,11 +69,9 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
                 continue;
 
             if (!LocalizedNames.TryGetValue(netEntity, out var name))
-                name = Loc.GetString("navmap-unknown-entity");
+                name = "Unknown";
 
-            var message = name + "\n" + Loc.GetString("navmap-location",
-                ("x", MathF.Round(blip.Coordinates.X)),
-                ("y", MathF.Round(blip.Coordinates.Y)));
+            var message = name + "\nLocation: [x = " + MathF.Round(blip.Coordinates.X) + ", y = " + MathF.Round(blip.Coordinates.Y) + "]";
 
             _trackedEntityLabel.Text = message;
             _trackedEntityPanel.Visible = true;

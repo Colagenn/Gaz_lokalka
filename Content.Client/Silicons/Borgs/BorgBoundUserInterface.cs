@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
+// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Silicons.Borgs;
@@ -25,29 +30,31 @@ public sealed class BorgBoundUserInterface : BoundUserInterface
 
         _menu.BrainButtonPressed += () =>
         {
-            SendPredictedMessage(new BorgEjectBrainBuiMessage());
+            SendMessage(new BorgEjectBrainBuiMessage());
         };
 
         _menu.EjectBatteryButtonPressed += () =>
         {
-            SendPredictedMessage(new BorgEjectBatteryBuiMessage());
+            SendMessage(new BorgEjectBatteryBuiMessage());
         };
 
         _menu.NameChanged += name =>
         {
-            SendPredictedMessage(new BorgSetNameBuiMessage(name));
+            SendMessage(new BorgSetNameBuiMessage(name));
         };
 
         _menu.RemoveModuleButtonPressed += module =>
         {
-            SendPredictedMessage(new BorgRemoveModuleBuiMessage(EntMan.GetNetEntity(module)));
+            SendMessage(new BorgRemoveModuleBuiMessage(EntMan.GetNetEntity(module)));
         };
     }
 
-    public override void Update()
+    protected override void UpdateState(BoundUserInterfaceState state)
     {
-        _menu?.UpdateBatteryButton();
-        _menu?.UpdateBrainButton();
-        _menu?.UpdateModulePanel();
+        base.UpdateState(state);
+
+        if (state is not BorgBuiState msg)
+            return;
+        _menu?.UpdateState(msg);
     }
 }

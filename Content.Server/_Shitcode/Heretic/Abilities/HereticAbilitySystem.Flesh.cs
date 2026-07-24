@@ -1,3 +1,14 @@
+// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
+// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
+// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
+// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Maths.FixedPoint;
@@ -20,7 +31,6 @@ using Content.Shared.Heretic;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC.Components;
-using Content.Shared.Nutrition;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
@@ -42,7 +52,7 @@ public sealed partial class HereticAbilitySystem
         SubscribeLocalEvent<FleshPassiveComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<FleshPassiveComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<FleshPassiveComponent, GetBodyOrganOverrideEvent<StomachComponent>>(OnGetStomach);
-        SubscribeLocalEvent<FleshPassiveComponent, IngestingEvent>(OnIngesting);
+        SubscribeLocalEvent<FleshPassiveComponent, ConsumingFoodEvent>(OnConsumingFood);
         SubscribeLocalEvent<FleshPassiveComponent, ExcludeMetabolismGroupsEvent>(OnExclude);
         SubscribeLocalEvent<FleshPassiveComponent, ComponentShutdown>(OnShutdown);
     }
@@ -67,17 +77,15 @@ public sealed partial class HereticAbilitySystem
         args.Groups.Add("Drink");
     }
 
-    private void OnIngesting(Entity<FleshPassiveComponent> ent, ref IngestingEvent args)
+    private void OnConsumingFood(Entity<FleshPassiveComponent> ent, ref ConsumingFoodEvent args)
     {
-        var volume = args.Split.Volume;
-
-        if (volume <= FixedPoint2.Zero)
+        if (args.Volume <= FixedPoint2.Zero)
             return;
 
         if (!Heretic.TryGetHereticComponent(ent, out var heretic, out _) || heretic.PathStage <= 0)
             return;
 
-        var multiplier = GetMultiplier((ent.Owner, ent.Comp), heretic, volume, args.Food, out var stage, out var multipliersApplied);
+        var multiplier = GetMultiplier((ent.Owner, ent.Comp), heretic, ref args, out var stage, out var multipliersApplied);
         if (!multipliersApplied)
             return;
 
@@ -93,26 +101,25 @@ public sealed partial class HereticAbilitySystem
 
     private float GetMultiplier(Entity<FleshPassiveComponent> ent,
         HereticComponent heretic,
-        FixedPoint2 volume,
-        EntityUid food,
+        ref ConsumingFoodEvent args,
         out float stage,
         out bool multipliersApplied)
     {
         stage = MathF.Pow(heretic.PathStage, 0.3f);
-        var multiplier = volume.Float() * stage;
+        var multiplier = args.Volume.Float() * stage;
         var oldMult = multiplier;
 
-        if (HasComp<MobStateComponent>(food))
+        if (HasComp<MobStateComponent>(args.Food))
             multiplier *= ent.Comp.MobMultiplier;
-        if (HasComp<BrainComponent>(food))
+        if (HasComp<BrainComponent>(args.Food))
             multiplier *= ent.Comp.BrainMultiplier;
-        if (HasComp<BodyPartComponent>(food))
+        if (HasComp<BodyPartComponent>(args.Food))
             multiplier *= ent.Comp.BodyPartMultiplier;
-        if (HasComp<OrganComponent>(food))
+        if (HasComp<OrganComponent>(args.Food))
             multiplier *= ent.Comp.OrganMultiplier;
-        if (HasComp<HumanOrganComponent>(food))
+        if (HasComp<HumanOrganComponent>(args.Food))
             multiplier *= ent.Comp.HumanMultiplier;
-        if (_tag.HasTag(food, ent.Comp.MeatTag))
+        if (_tag.HasTag(args.Food, ent.Comp.MeatTag))
             multiplier *= ent.Comp.MeatMultiplier;
         if (heretic.Ascended)
             multiplier *= ent.Comp.AscensionMultiplier;

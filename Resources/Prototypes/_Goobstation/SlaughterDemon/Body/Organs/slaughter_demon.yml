@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+# SPDX-FileCopyrightText: 2025 Lumminal <81829924+Lumminal@users.noreply.github.com>
+#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -106,6 +109,7 @@
   - type: OrganInsertOnUse
     slotId: heart
     partType: Chest
-  - type: Edible
+  - type: Food
+    requiredStomachs: 666 # So you can't just eat it on use lmao
   - type: StaticPrice
     price: 50000

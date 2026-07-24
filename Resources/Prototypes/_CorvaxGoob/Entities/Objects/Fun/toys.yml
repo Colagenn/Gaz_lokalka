@@ -32,7 +32,7 @@
       collection: RubberPig
       params:
         variation: 0.125
-  - type: Edible
+  - type: Food
     requiresSpecialDigestion: true
     useSound:
       collection: RubberPig

@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
@@ -14,7 +17,8 @@ public sealed class EntityTextureTag : BaseTextureTag, IMarkupTagHandler
     public bool TryCreateControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
     {
         control = null;
-        if (node.Closing || !node.Attributes.TryGetValue("id", out var idParameter) || !idParameter.TryGetLong(out var id))
+
+        if (!node.Attributes.TryGetValue("id", out var idParameter) || !idParameter.TryGetLong(out var id))
             return false;
 
         if (!node.Attributes.TryGetValue("size", out var size) || !size.TryGetLong(out var sizeValue))
@@ -22,7 +26,11 @@ public sealed class EntityTextureTag : BaseTextureTag, IMarkupTagHandler
             sizeValue = 32;
         }
 
-        control = DrawIconEntity(new NetEntity((int) id), sizeValue.Value);
+        if (!TryDrawIconEntity(new NetEntity((int) id), sizeValue.Value, out var texture))
+            return false;
+
+        control = texture;
+
         return true;
     }
 }

@@ -1,3 +1,16 @@
+// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
+// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <gradientvera@outlook.com>
+// SPDX-FileCopyrightText: 2021 mirrorcult <lunarautomaton6@gmail.com>
+// SPDX-FileCopyrightText: 2021 pointer-to-null <91910481+pointer-to-null@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2022 Jacob Tong <10494922+ShadowCommander@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Nutrition.Components;
@@ -22,18 +35,18 @@ namespace Content.Shared.Nutrition.EntitySystems
             SubscribeLocalEvent<CreamPiedComponent, ThrowHitByEvent>(OnCreamPiedHitBy);
         }
 
-        public void SplatCreamPie(Entity<CreamPieComponent> creamPie)
+        public void SplatCreamPie(EntityUid uid, CreamPieComponent creamPie)
         {
             // Already splatted! Do nothing.
-            if (creamPie.Comp.Splatted)
+            if (creamPie.Splatted)
                 return;
 
-            creamPie.Comp.Splatted = true;
+            creamPie.Splatted = true;
 
-            SplattedCreamPie(creamPie);
+            SplattedCreamPie(uid, creamPie);
         }
 
-        protected virtual void SplattedCreamPie(Entity<CreamPieComponent, EdibleComponent?> entity) { }
+        protected virtual void SplattedCreamPie(EntityUid uid, CreamPieComponent creamPie) {}
 
         public void SetCreamPied(EntityUid uid, CreamPiedComponent creamPied, bool value)
         {
@@ -48,18 +61,20 @@ namespace Content.Shared.Nutrition.EntitySystems
             }
         }
 
-        private void OnCreamPieLand(Entity<CreamPieComponent> entity, ref LandEvent args)
+        private void OnCreamPieLand(EntityUid uid, CreamPieComponent component, ref LandEvent args)
         {
-            SplatCreamPie(entity);
+            SplatCreamPie(uid, component);
         }
 
-        private void OnCreamPieHit(Entity<CreamPieComponent> entity, ref ThrowDoHitEvent args)
+        private void OnCreamPieHit(EntityUid uid, CreamPieComponent component, ThrowDoHitEvent args)
         {
-            SplatCreamPie(entity);
+            SplatCreamPie(uid, component);
         }
 
         private void OnCreamPiedHitBy(EntityUid uid, CreamPiedComponent creamPied, ThrowHitByEvent args)
         {
+            if (args.Handled) // Goobstation
+                return;
 
             if (!Exists(args.Thrown) || !TryComp(args.Thrown, out CreamPieComponent? creamPie))
                 return;

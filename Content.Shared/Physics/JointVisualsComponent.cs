@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
@@ -12,30 +17,21 @@ namespace Content.Shared.Physics;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class JointVisualsComponent : Component
 {
-    /// <summary>
-    /// The sprite to use for the line.
-    /// </summary>
-    [DataField(required: true), AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField("sprite", required: true), AutoNetworkedField]
     public SpriteSpecifier Sprite = default!;
 
-    /// <summary>
-    /// The line is drawn between this target and the entity owning the component.
-    /// </summary>
-    /// <summary>
-    /// TODO: WeakEntityReference.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid? Target;
+    [ViewVariables(VVAccess.ReadWrite), DataField("target"), AutoNetworkedField]
+    public NetEntity? Target;
 
     /// <summary>
     /// Offset from Body A.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField("offsetA"), AutoNetworkedField]
     public Vector2 OffsetA;
 
     /// <summary>
     /// Offset from Body B.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField("offsetB"), AutoNetworkedField]
     public Vector2 OffsetB;
 }

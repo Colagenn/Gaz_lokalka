@@ -1,3 +1,11 @@
+# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+# SPDX-FileCopyrightText: 2025 McBosserson <148172569+McBosserson@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 McBosserson <mcbosserson@hotmail.com>
+# SPDX-FileCopyrightText: 2025 SoundingExpert <204983230+SoundingExpert@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 john git <113782077+whateverusername0@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 router <messagebus@vk.com>
+# SPDX-FileCopyrightText: 2025 whateverusername0 <whateveremail>
+#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -35,7 +43,6 @@
   - type: PowerNetworkBattery
     maxChargeRate: 5000000 # 5MJ
   - type: Battery
-    netsync: false
     startingCharge: 0
     maxCharge: 100000000 # 100MJ
   - type: ExaminableBattery
@@ -61,7 +68,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: BatteryAmmoProvider
+  - type: HitscanBatteryAmmoProvider
     examinable: false
     proto: PTL
     fireCost: 1000
@@ -93,21 +100,17 @@
     sound:
       path: /Audio/Ambience/Objects/engine_hum.ogg
 
-- type: entity
-  parent: BasicHitscan
+- type: hitscan
   id: PTL
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Heat: 30
-  - type: HitscanBasicVisuals
-    muzzleFlash:
-      sprite: _Goobstation/Structures/Machines/PTL/pt_beam.rsi
-      state: ptl_beam
-    travelFlash:
-      sprite: _Goobstation/Structures/Machines/PTL/pt_beam.rsi
-      state: ptl_beam
-    impactFlash:
-      sprite: _Goobstation/Structures/Machines/PTL/pt_beam.rsi
-      state: ptl_beam
+  damage:
+    types:
+      Heat: 30
+  muzzleFlash:
+    sprite: _Goobstation/Structures/Machines/PTL/pt_beam.rsi
+    state: ptl_beam
+  travelFlash:
+    sprite: _Goobstation/Structures/Machines/PTL/pt_beam.rsi
+    state: ptl_beam
+  impactFlash:
+    sprite: _Goobstation/Structures/Machines/PTL/pt_beam.rsi
+    state: ptl_beam
