@@ -1,5 +1,5 @@
-advertisement-donk-1 = Just microwave and eat!
-advertisement-donk-2 = The original home of the Donk Pocket!
+advertisement-donk-65 = Just microwave and eat!
+advertisement-donk-67 = The original home of the Donk Pocket!
 advertisement-donk-3 = The original!
 advertisement-donk-4 = You wanna put a bangin' Donk on it!
 advertisement-donk-5 = The best!

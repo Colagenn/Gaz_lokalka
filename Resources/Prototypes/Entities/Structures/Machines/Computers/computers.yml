@@ -162,8 +162,7 @@
           path: /Audio/Machines/terminal_insert_disc.ogg
         whitelist:
           components:
-            - ShuttleDestinationCoordinates
-            - Vinyl #SpyStation edit
+          - ShuttleDestinationCoordinates
   - type: ContainerContainer
     containers:
       board: !type:Container
@@ -181,16 +180,6 @@
     - SignalShuttleConsole4
     range: 90
   # Frontier edit end
-  #SpyStation edit start
-  - type: VinylPlayer
-  - type: ItemMapper
-    containerWhitelist: [vinyl]
-    mapLayers:
-      disk_installed:
-        whitelist:
-          components:
-          - Vinyl
- #SpyStation edit end
 
 - type: entity
   parent: BaseComputerShuttle

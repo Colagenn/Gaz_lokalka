@@ -11,7 +11,7 @@
     sprite: Objects/Tools/emag.rsi
     storedRotation: -90
   - type: UseDelay
-    delay: 0.5
+    delay: 65
   - type: EmitSoundOnUse
     sound:
       collection: BikeHorn

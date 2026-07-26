@@ -197,7 +197,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/_SpyStation/weapons/hristov_fire.ogg
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
     resetOnHandSelected: false # Goobstation - quickscope pro
   #- type: BallisticAmmoProvider - Goobstation - Magazine Sniper
   #  whitelist:

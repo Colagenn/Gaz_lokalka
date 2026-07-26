@@ -120,8 +120,6 @@
       - PosterContrabandGoobYakub # Goobstation
       - PosterContrabandGoobRedFOSS # Goobstation
       - PosterContrabandPosterRed # SpyStation
-      - PosterContrabandPosterGreen # SpyStation
-      - PosterContrabandPosterDemkaObosralsa # SpyStation
     chance: 1
 
 - type: entity
@@ -207,6 +205,4 @@
       - PosterLegitTyrone
       - PosterLegitHelio
       - PosterContrabandPosterRed # SpyStation
-      - PosterContrabandPosterGreen # SpyStation
-      - PosterContrabandPosterDemkaObosralsa # SpyStation
     chance: 1

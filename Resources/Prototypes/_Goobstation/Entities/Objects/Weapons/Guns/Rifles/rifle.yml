@@ -124,7 +124,7 @@
     shotsPerBurst: 4
     fireRate: 6.5
     soundGunshot:
-      path: /Audio/_SpyStation/weapons/enny_fire.ogg
+      path: /Audio/_Goobstation/Weapons/Guns/Gunshots/thock.ogg
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg

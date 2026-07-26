@@ -100,7 +100,6 @@
 # SPDX-FileCopyrightText: 2025 username <113782077+whateverusername0@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 whateverusername0 <whateveremail>
 # SPDX-FileCopyrightText: 2025 yglop <95057024+yglop@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2026 EXNK4650 <github.com/Leva0408>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -334,18 +333,6 @@
 
 - type: jukebox
   id: rippedjeans
-  name: Элджей - Рваные джинсы
+  name: Eljey - Ripped Jeans
   path:
-    path: /Audio/_SpyStation/vynils/rippedjeans.ogg
-
-- type: jukebox
-  id: khlamidiya
-  name: 5opka & MellSher - Хламидия
-  path:
-    path: /Audio/_SpyStation/vynils/khlamidiya.ogg
-
-- type: jukebox
-  id: polnyybak
-  name: BUSTER - Полный Бак
-  path:
-    path: /Audio/_SpyStation/vynils/polnyybak.ogg
+    path: /Audio/Lobby/rippedjeans.ogg

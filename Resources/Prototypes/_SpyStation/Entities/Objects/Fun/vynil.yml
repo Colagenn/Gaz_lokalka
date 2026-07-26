@@ -43,7 +43,7 @@
       path: /Audio/_SpyStation/vynils/meshaplocal.ogg
 
 - type: entity
-  name: Виниловая пластинка "Рваные джинсы, чуть громче"
+  name: vremya nochi 2 chasa
   id: VinylDiskrippedjeans
   parent: BaseVinylDisk
   components:
@@ -51,76 +51,15 @@
     state: darkblue-vinyl-disk
   - type: Vinyl
     song:
-      path: /Audio/_SpyStation/vynils/rippedjeans.ogg
+      path: /Audio/Lobby/bankomat.ogg
 
 - type: entity
-  name: конверт для пластинки "Рваные джинсы, чуть громче"
-  id: Vinylrippedjeans
-  parent: BaseVinylSleeve
-  components:
-  - type: Sprite
-    state: rippedjeans-vinyl-sleeve
-    sprite: _SpyStation/Objects/Misc/RadioStation/vinylsleeves.rsi
-
-- type: entity
-  name: Виниловая пластинка "Хламидия"
+  name: localbullshit
   id: VinylDiskKhlamidiya
   parent: BaseVinylDisk
   components:
   - type: Sprite
-    state: glossy-vinyl-disk
+    state: darkblue-vinyl-disk
   - type: Vinyl
     song:
-      path: /Audio/_SpyStation/vynils/khlamidiya.ogg
-
-- type: entity
-  name: конверт для пластинки "Хламидия"
-  id: VinylKhlamidiya
-  parent: BaseVinylSleeve
-  components:
-  - type: Sprite
-    sprite: _SpyStation/Objects/Misc/RadioStation/vinylsleeves.rsi
-    state: khlamidiya-vinyl-sleeve
-
-- type: entity
-  name: Виниловая пластинка "Друнштайн"
-  id: VinylDiskDrunSthine
-  parent: BaseVinylDisk
-  components:
-  - type: Sprite
-    state: pizza-vinyl-disk
-  - type: Vinyl
-    song:
-      path: /Audio/_SpyStation/vynils/drunshtine.ogg
-
-- type: entity
-  name: Виниловая пластинка "Бурмалдалика"
-  id: VinylDiskBurmaldalica
-  parent: BaseVinylDisk
-  components:
-  - type: Sprite
-    state: yellow-vinyl-disk
-  - type: Vinyl
-    song:
-      path: /Audio/_SpyStation/vynils/burmaldalica.ogg
-
-- type: entity
-  name: Виниловая пластинка "Полный бак"
-  id: VinylDiskPolnyyBak
-  parent: BaseVinylDisk
-  components:
-  - type: Sprite
-    state: lightblue-vinyl-disk
-  - type: Vinyl
-    song:
-      path: /Audio/_SpyStation/vynils/polnyybak.ogg
-  
-- type: entity
-  name: конверт для пластинки "Полный бак"
-  id: VinylPolnyyBak
-  parent: BaseVinylSleeve
-  components:
-  - type: Sprite
-    sprite: _SpyStation/Objects/Misc/RadioStation/vinylsleeves.rsi
-    state: polnyybak-vinyl-sleeve
-
+      path: /Audio/Lobby/mellstroy_peak.ogg

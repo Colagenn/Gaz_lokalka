@@ -1,36 +1,24 @@
 
-- type: lobbyBackground #я босс сделал это рабочим  
+- type: lobbyBackground #воскрешение газлокалки
   id: gaslokalka
   background: /Textures/_SpyStation/LobbyScreens/gaslokalka.webp
   name: ГазЛокалка
   artist: SpyBlumps
 
 - type: lobbyBackground 
-  id: rebel
-  background: /Textures/_SpyStation/LobbyScreens/rebel.webp
-  name: РебелИнк
-  artist: Baton
-
-- type: lobbyBackground 
-  id: musor
-  background: /Textures/_SpyStation/LobbyScreens/musor.webp
-  name: Послание
-  artist: MamaTvoya
-
-- type: lobbyBackground 
   id: corvaxmoney
-  background: /Textures/_SpyStation/LobbyScreens/corvaxmoney.webp
-  name: КорваксМани
+  background: /Textures/_SpyStation/LobbyScreens/mellstroy_station.webp
+  name: Меллстрой Стейшн
   artist: TheIncredibleBaton
 
 - type: lobbyBackground 
-  id: valve
-  background: /Textures/_SpyStation/LobbyScreens/valve.webp
-  name: Валв
-  artist: SpyBlumps
+  id: incrediblemark
+  background: /Textures/_SpyStation/LobbyScreens/incredible_mark.webp
+  name: Инкридибл Марк
+  artist: TheIncredibleBaton
 
 - type: lobbyBackground 
-  id: gassy
-  background: /Textures/_SpyStation/LobbyScreens/gassy.webp
-  name: ИнкридиблГаззи
-  artist: SpyBlumps
+  id: enthony
+  background: /Textures/_SpyStation/LobbyScreens/enthony.webp
+  name: Энтони Хендерсон
+  artist: TheIncredibleBaton

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+# SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
+#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -221,8 +224,6 @@
       weight: 4
     - id: VinylDiskKhlamidiya
       weight: 4
-    - id: VinylDiskPolnyyBak
-      weight: 4
 
 - type: entityTable
   id: RandomVinylSleeve
@@ -305,8 +306,6 @@
     - id: VinylKhlamidiya
       weight: 4
     - id: Vinylrippedjeans
-      weight: 4
-    - id: VinylPolnyyBak
       weight: 4
 
 - type: entity
