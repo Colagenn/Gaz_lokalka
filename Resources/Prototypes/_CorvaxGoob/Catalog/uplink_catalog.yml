@@ -63,7 +63,7 @@
   icon: { sprite: _CorvaxGoob/Mobs/Pets/syndicategorilla.rsi, state: crawling }
   productEntity: ReinforcementRadioSyndicateGorilla
   cost:
-    Telecrystal: 50
+    Telecrystal: 50 
   categories:
     - UplinkAllies
   conditions:
@@ -71,7 +71,7 @@
     blacklist:
       tags:
       - ContravendUplink
-
+      
 # CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) start
 - type: listing
   id: UplinkDiceOfFate
@@ -88,8 +88,7 @@
     whitelist:
     - Librarian
 # CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) end
-
->>>>>>> upstream/master
+  
 - type: listing
   id: UplinkToolboxElectricalTurret
   name: uplink-toolbox-electrical-turret-name
@@ -104,31 +103,3 @@
     - !type:BuyerDepartmentCondition
       whitelist:
       - Engineering
-
-- type: listing
-  id: UplinkWristwatchSyndi
-  name: uplink-syndi-wristwatch-name
-  description: uplink-syndi-wristwatch-desc
-  productEntity: WristwatchSyndi
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 10
-  cost:
-    Telecrystal: 20
-  categories:
-
-- UplinkDeception
-  id: UplinkMimejutsuManualMime
-  name: uplink-mimejutsu-name
-  description: uplink-mimejutsu-desc
-  productEntity: MimejutsuManual
-  cost:
-    Telecrystal: 50
-  categories:
-  - UplinkJob
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - Mime

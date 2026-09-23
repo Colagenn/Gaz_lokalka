@@ -48,5 +48,4 @@ public enum MartialArtsForms
     KungFuDragon,
     Ninjutsu,
     HellRip,
-    Mimejutsu, // CorvaxGoob - Mimejutsu
 }
