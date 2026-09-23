@@ -70,6 +70,10 @@
     size: Large
     shape:
     - 0,0,4,1
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
   - type: HeldGrantComponent # Gaslokalka - Fuck you
     components:
     - type: Clumsy
