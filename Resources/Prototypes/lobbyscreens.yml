@@ -5,62 +5,68 @@
   name: ГазЛокалка
   artist: SpyBlumps
 
-- type: lobbyBackground 
+- type: lobbyBackground
   id: corvaxmoney
   background: /Textures/_SpyStation/LobbyScreens/mellstroy_station.webp
   name: Меллстрой Стейшн
   artist: TheIncredibleBaton
 
-- type: lobbyBackground 
+- type: lobbyBackground
   id: auraofgaslokalka
   background: /Textures/_SpyStation/LobbyScreens/gaslokalka_station.webp
   name: Газлокалка с аурой
   artist: TheIncredibleBaton
 
-- type: lobbyBackground 
+- type: lobbyBackground
   id: enthony
   background: /Textures/_SpyStation/LobbyScreens/enthony.webp
   name: Энтони Хендерсон
   artist: TheIncredibleBaton
 
-- type: lobbyBackground 
+- type: lobbyBackground
   id: enthony2
   background: /Textures/_SpyStation/LobbyScreens/enthony_on_a_gas_giant.webp
   name: Геймплей на Gaslokalka
   artist: TheIncredibleBaton
 
-- type: lobbyBackground 
+- type: lobbyBackground
   id: enthonyshotgun
   background: /Textures/_SpyStation/LobbyScreens/gaslokalka_station_65.webp
   name: Энтони круто стоит
   artist: TheIncredibleBaton
 
-- type: lobbyBackground 
+- type: lobbyBackground
   id: gaslokalkacrew
   background: /Textures/_SpyStation/LobbyScreens/gaslokalka_crew.webp
   name: Отряд газлокалки
   artist: TheIncredibleBaton # главное себя любимого хорошо нарисовать
 
-- type: lobbyBackground 
+- type: lobbyBackground
   id: metacoop
   background: /Textures/_SpyStation/LobbyScreens/metacoop.webp
   name: Метакоопим 24 часа
   artist: TheIncredibleBaton
 
-- type: lobbyBackground 
+- type: lobbyBackground
   id: gabrielwade
   background: /Textures/_SpyStation/LobbyScreens/gabrielwade.webp
   name: Габриэль Уэйд
   artist: TheIncredibleBaton
 
-- type: lobbyBackground 
+- type: lobbyBackground
   id: mrandreynebesny
   background: /Textures/_SpyStation/LobbyScreens/mrandreynebesny.webp
   name: Мистер Андрей Небесеный
   artist: EXNK4650
 
-- type: lobbyBackground 
+- type: lobbyBackground
   id: razban
   background: /Textures/_SpyStation/LobbyScreens/razban.webp
   name: Тебе отказали в обжаловании
   artist: EXNK4650
+
+- type: lobbyBackground
+  id: gaslokanos
+  background: /Textures/_SpyStation/LobbyScreens/gaslokanos.webp
+  name: Газлоканос
+  artist: TheIncredibleBaton

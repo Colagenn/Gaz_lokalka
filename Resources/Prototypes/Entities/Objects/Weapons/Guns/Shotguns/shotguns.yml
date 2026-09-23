@@ -192,7 +192,11 @@
   - type: BallisticAmmoProvider
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    fireRate: 1.7 # Goobstation
+    fireRate: 3 # Gaslokalka
+  - type: GunRecoil
+    baseKnockdownTime: 0.5
+    baseThrowRange: 6.5
+    baseThrowSpeed: 7
 
 - type: entity
   parent: WeaponShotgunEnforcer
@@ -201,6 +205,10 @@
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunBeanbag
+  - type: GunRecoil
+    baseKnockdownTime: 0.5
+    baseThrowRange: 6.5
+    baseThrowSpeed: 7
 
 - type: entity
   name: Kammerer
@@ -224,6 +232,10 @@
     - WeaponShotgunKammerer
   - type: BallisticAmmoProvider # Goobstation
     autoCycle: false
+  - type: GunRecoil
+    baseKnockdownTime: 0.5
+    baseThrowRange: 4.5
+    baseThrowSpeed: 4
 
 - type: entity
   name: sawn-off shotgun
@@ -242,14 +254,17 @@
     sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/sawn.rsi #GoobStation resprite
   - type: Gun
     fireRate: 3
-  - type: GunSpreadModifier
-    spread: 1.4
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
     graph: ShotgunSawn
     node: shotgunsawn
     deconstructionTarget: null
+  - type: GunRecoil
+    refreshKnockdown: false
+    KnockdownTime: 0.2
+    ThrowRange: 5
+    ThrowSpeed: 12
 
 - type: entity
   name: sawn-off shotgun
@@ -334,6 +349,10 @@
   - type: Tag # Goobstation
     tags:
     - ImprovisedShotgun
+  - type: GunRecoil
+    baseKnockdownTime: 1.5
+    baseThrowRange: 15
+    baseThrowSpeed: 7
 
 - type: entity
   name: improvised shotgun

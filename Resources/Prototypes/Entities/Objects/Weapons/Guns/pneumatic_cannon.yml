@@ -18,24 +18,26 @@
   - type: Clothing
     quickEquip: false
     slots:
-    - Back
+    - Belt
+    - SuitStorage
   - type: Gun
     fireRate: 2
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Effects/thunk.ogg
+      path: /Audio/_SpyStation/weapons/pneumatic_shit.ogg
     soundEmpty:
-      path: /Audio/Items/hiss.ogg
+      path: /Audio/_SpyStation/weapons/nigga_fart.ogg
     clumsyProof: true
   - type: ContainerAmmoProvider
     container: storagebase
   - type: PneumaticCannon
   - type: Storage
-    maxItemSize: Normal
+    maxItemSize: Huge
     grid:
-    - 0,0,1,1
+    - 0,0,9,0
+    - 0,1,1,1
   - type: Appearance
   - type: ItemMapper
     containerWhitelist: [gas_tank]

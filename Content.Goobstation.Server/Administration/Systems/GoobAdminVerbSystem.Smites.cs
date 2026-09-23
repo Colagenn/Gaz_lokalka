@@ -24,7 +24,7 @@ public sealed partial class GoobAdminVerbSystem
         {
             Text = thunderstrike,
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/smite.svg.192dpi.png")),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/smite.svg.192dpi.png")),
             Act = () =>
             {
                 var ogun = EntityManager.System<ThunderstrikeSystem>();

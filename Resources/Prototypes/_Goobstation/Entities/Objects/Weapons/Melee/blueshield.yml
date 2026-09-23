@@ -75,7 +75,7 @@
           False: {state: icon-off}
   - type: StaticPrice
     price: 1000
-  - type: MartialArtBlocked # CorvaxGoob judo+baton fix 
+  - type: MartialArtBlocked # CorvaxGoob judo+baton fix
     form: CorporateJudo
 
 - type: entity
@@ -89,25 +89,31 @@
     state: icon
   - type: Item
     size: Small
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/_SpyStation/mems/blueshit.ogg
+      params:
+        variation: 1
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletCaselessRifle
+    capacity: 7
+    count: 7
   - type: SolutionContainerManager
     solutions:
-      injector:
-        maxVol: 5
-  - type: Injector
-    activeModeProtoId: CombatInjectorDynamicMode # SyringeDrawMode #Goob start
-    allowedModes:
-    - CombatInjectorDynamicMode # SyringeDrawMode
-    - CombatInjectorInjectMode # SyringeInjectMode #Goob end
-  - type: MeleeChemicalInjector
-    transferAmount: 5
-    solution: injector
-    pierceArmor: true
-  - type: MeleeWeapon
-    angle: 0
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Piercing: 1
-    animation: WeaponArcThrust
-    soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
+      solution:
+        maxVol: 30
+  - type: RefillableSolution
+    solution: solution
+  - type: ExaminableSolution
+    solution: solution
+  - type: GunApplySolution
+  - type: HeldGrantComponent # Gaslokalka - Fuck you
+    components:
+    - type: Clumsy

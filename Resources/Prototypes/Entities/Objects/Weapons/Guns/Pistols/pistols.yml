@@ -241,11 +241,9 @@
   - type: Item
     storedOffset: 0,-2
   - type: Gun
-    fireRate: 5
-    availableModes:
-    - SemiAuto
+    fireRate: 6.5 # Gaslokalka
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      path: /Audio/_SpyStation/weapons/mk58.ogg
   - type: StealTarget
     stealGroup: OfficerHandgun
 

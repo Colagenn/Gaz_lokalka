@@ -34,9 +34,11 @@
           tags:
           - ShellShotgunHeavy
   - type: Gun
-    fireRate: 0.65
+    fireRate: 1
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+      path: /Audio/_SpyStation/mems/blueshit.ogg
+      params:
+        variation: 1
   - type: ChamberMagazineAmmoProvider
     autoCycle: false
     autoEject: true
@@ -61,10 +63,13 @@
     zeroVisible: true
   - type: Appearance
   - type: UseDelay
-    delay: 0.1
+    delay: 1
   - type: UseDelayBlockShoot
   - type: Item
     sprite: _Goobstation/Objects/Weapons/Guns/Lever/chester.rsi
     size: Large
     shape:
     - 0,0,4,1
+  - type: HeldGrantComponent # Gaslokalka - Fuck you
+    components:
+    - type: Clumsy

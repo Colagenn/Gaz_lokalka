@@ -20,14 +20,14 @@ public sealed partial class ClumsyComponent : Component
     ///     Sound to play when clumsy interactions fail.
     /// </summary>
     [DataField]
-    public SoundSpecifier ClumsySound = new SoundPathSpecifier("/Audio/Items/bikehorn.ogg");
+    public SoundSpecifier ClumsySound = new SoundPathSpecifier("/Audio/_SpyStation/items/placeholder.ogg");
 
     /// <summary>
     ///     Default chance to fail a clumsy interaction.
     ///     If a system needs to use something else, add a new variable in the component, do not modify this percentage.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float ClumsyDefaultCheck = 0.5f;
+    public float ClumsyDefaultCheck = 1f;
 
     /// <summary>
     ///     Default stun time.
@@ -48,13 +48,13 @@ public sealed partial class ClumsyComponent : Component
     ///     Stun time after failing to shoot a gun.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public TimeSpan GunShootFailStunTime = TimeSpan.FromSeconds(3);
+    public TimeSpan GunShootFailStunTime = TimeSpan.FromSeconds(65);
 
     /// <summary>
     ///     Damage taken after failing to shoot a gun.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public DamageSpecifier? GunShootFailDamage = new() {DamageDict = new Dictionary<string, FixedPoint2> {{"Brute", 12}}}; // Goob edit - add a default value (evil)
+    public DamageSpecifier? GunShootFailDamage = new() {DamageDict = new Dictionary<string, FixedPoint2> {{"Slash", 190}}}; // Gaslokalka - Fuck you
 
     /// <summary>
     ///     Damage taken after failing to catch an item.
